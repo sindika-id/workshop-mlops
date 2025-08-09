@@ -1,6 +1,6 @@
 # Kaggle: Registration & API Setup Guide
 
-This guide combines **Kaggle account registration** and **Kaggle API setup** so you can quickly access datasets for your ML projects and workshops.
+This guide combines **Kaggle account registration**, **Kaggle API setup**, and **Python `kagglehub` usage** so you can quickly access datasets for your ML projects and workshops.
 
 ---
 
@@ -47,7 +47,7 @@ This guide combines **Kaggle account registration** and **Kaggle API setup** so 
 
 ---
 
-## 7. (Optional) Enable Kaggle API (Create Token)
+## 7. Enable Kaggle API (Create Token)
 If you want to download datasets programmatically:
 1. Click your profile picture → **Account**.  
 2. Scroll to **API** section.  
@@ -76,7 +76,8 @@ kaggle --version
 **Windows (PowerShell):**
 ```powershell
 mkdir -Force $env:USERPROFILE\.kaggle
-Move-Item -Force .\kaggle.json $env:USERPROFILE\.kaggle```
+Move-Item -Force .\kaggle.json $env:USERPROFILE\.kaggle
+```
 
 **macOS / Linux (Terminal):**
 ```bash
@@ -89,7 +90,7 @@ chmod 600 ~/.kaggle/kaggle.json
 
 ---
 
-## 9. Test the API
+## 9. Test the Kaggle CLI
 
 ### 9.1. Search for a dataset
 ```bash
@@ -120,9 +121,41 @@ kaggle.json
 
 ---
 
+## 11. Download Dataset with `kagglehub` (Python)
+
+> This method is useful if you want to download datasets directly inside a Python script or Jupyter Notebook without using the command line.
+
+### 11.1. Install `kagglehub`
+```bash
+pip install kagglehub
+```
+
+### 11.2. Ensure API Token is Set
+- Follow step **7** above to create and download `kaggle.json`.
+- Place it in:
+  - **Windows**: `%USERPROFILE%\.kaggle\kaggle.json`
+  - **macOS/Linux**: `~/.kaggle/kaggle.json`
+
+### 11.3. Example: Download Dataset
+```python
+import kagglehub
+
+# Download latest version of the dataset
+path = kagglehub.dataset_download("bhavikjikadara/dog-and-cat-classification-dataset")
+
+print("Path to dataset files:", path)
+```
+
+### 11.4. How It Works
+- `kagglehub.dataset_download()` will:
+  - Authenticate using your `kaggle.json` API key.
+  - Download the dataset to a cache folder (usually `~/.cache/kagglehub`).
+  - Return the **local path** so you can use it in your ML pipeline.
+
+---
+
 ✅ **Outcome**
 You now have:
 - A registered Kaggle account.  
 - The Kaggle API installed and configured.  
-- Ability to download datasets programmatically for your MLOps workshop.
-
+- Ability to download datasets programmatically using **CLI** or **Python `kagglehub`**.

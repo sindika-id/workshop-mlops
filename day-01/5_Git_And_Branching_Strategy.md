@@ -87,6 +87,8 @@ In ML projects, we **must not** commit:
 - Model binary files (track with DVC instead)  
 - Temporary files, caches, or environment files  
 
+#### 1. Create `.gitignore`
+
 Example `.gitignore`:
 ```gitignore
 # Data & model artifacts
@@ -108,6 +110,26 @@ __pycache__/
 # DVC cache (local only)
 .dvc/tmp/
 .dvc/cache/
+```
+
+#### 2. Stage the file
+```bash
+git add .gitignore
+```
+
+---
+
+### 3. Commit changes
+```bash
+git commit -m "Add .gitignore for ML project"
+```
+
+---
+
+### 4. Push to GitHub
+*(Make sure the remote repository is already set — see Step 2 for `git remote add origin`)*  
+```bash
+git push origin main
 ```
 
 ---
@@ -142,34 +164,3 @@ git checkout -b feature/data-cleaning
 ---
 
 
-## 4. Quick Command Reference
-```bash
-# Clone a repository
-git clone <repo_url>
-
-# Create branch
-git checkout -b feature/new-feature
-
-# Switch branch
-git checkout develop
-
-# Stage & commit changes
-git add .
-git commit -m "Your message"
-
-# Push branch to remote
-git push origin feature/new-feature
-
-# Tag a release
-git tag -a v1.0-model -m "Release model v1.0"
-git push origin v1.0-model
-```
-
----
-
-✅ **Outcome After This Tutorial:**  
-You will have:
-- A Git repo with `.gitignore` ready for ML work.
-- A clear branching strategy.
-- A tagging system for model versions.
-- A team workflow for collaboration and reproducibility.

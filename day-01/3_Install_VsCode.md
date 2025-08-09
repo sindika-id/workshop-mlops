@@ -55,4 +55,18 @@ This guide covers installing Visual Studio Code (VS Code) on **Windows**, **macO
 
 ---
 
+## 4. Install Python Extension in VS Code
+
+1. Open VS Code.
+2. Go to the **Extensions** view:
+   - Click the Extensions icon on the Activity Bar (left side), or
+   - Press `Ctrl + Shift + X` (**Cmd + Shift + X** on macOS).
+3. In the search box, type:  
+   **Python** (by Microsoft).
+4. Click **Install**.
+5. **Optional but recommended:** Install **Pylance** (Microsoft) for improved IntelliSense and type checking.
+6. Restart VS Code to ensure the extension loads properly.
+
+---
+
 **You are now ready to use VS Code for your ML projects!**

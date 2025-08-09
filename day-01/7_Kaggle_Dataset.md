@@ -49,7 +49,7 @@ This guide combines **Kaggle account registration**, **Kaggle API setup**, and *
 
 ## 7. Enable Kaggle API (Create Token)
 If you want to download datasets programmatically:
-1. Click your profile picture → **Account**.  
+1. Click your profile picture → **Setting** → **Account**.  
 2. Scroll to **API** section.  
 3. Click **Create New API Token**.  
 4. This downloads `kaggle.json` — keep it safe and **do not share**.
@@ -105,7 +105,7 @@ unzip titanic.zip -d titanic_dataset
 
 ### 9.3. Download a public dataset (example)
 ```bash
-kaggle datasets download -d paultimothymooney/chest-xray-pneumonia -p datasets/pneumonia --unzip
+kaggle datasets download -d bhavikjikadara/dog-and-cat-classification-dataset -p datasets/dog-cat --unzip
 ```
 
 ---

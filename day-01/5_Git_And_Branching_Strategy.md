@@ -39,10 +39,23 @@ cd mlops-workshop-pens
 git init
 ```
 
-2. **Create an initial file**
-```bash
-echo "# MLOps Workshop PENS" > README.md
-```
+2. **Create an initial file using VS Code**
+   - Open VS Code in the project folder:
+     ```bash
+     code .
+     ```
+     *(If `code` command is not recognized, open VS Code manually and choose "File → Open Folder…")*
+   - In VS Code:
+     1. Click **New File** in the Explorer panel.
+     2. Name the file:
+        ```
+        README.md
+        ```
+     3. Add the following content:
+        ```md
+        # MLOps Workshop PENS
+        ```
+     4. Save the file (**Ctrl+S** / **Cmd+S**).
 
 3. **Stage and commit the file**
 ```bash

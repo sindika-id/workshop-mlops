@@ -66,17 +66,30 @@ git config --global init.defaultBranch main
 
 ---
 
+
 ## 6) Connect to GitHub via SSH (Recommended)
 
 ### 6.1 Check Existing Keys
+
+**macOS / Linux (Terminal)**
 ```bash
 ls -al ~/.ssh
 ```
+
+**Windows (PowerShell)** 
+
+```powershell
+Get-ChildItem $env:USERPROFILE\.ssh
+```
+
+---
 
 ### 6.2 Generate a New SSH Key
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
+
+---
 
 ### 6.3 Start the SSH Agent & Add Your Key
 
@@ -87,17 +100,32 @@ ssh-add ~/.ssh/id_ed25519
 ```
 
 **Windows (PowerShell)**
+
+Run as Administrator
 ```powershell
 Start-Service ssh-agent
 ssh-add $env:USERPROFILE\.ssh\id_ed25519
 ```
 
+---
+
 ### 6.4 Add the Public Key to GitHub
 1. Copy your public key:
-   - macOS/Linux: `cat ~/.ssh/id_ed25519.pub`
-   - Windows: `type $env:USERPROFILE\.ssh\id_ed25519.pub`
+
+   **macOS / Linux**
+   ```bash
+   cat ~/.ssh/id_ed25519.pub
+   ```
+
+   **Windows (PowerShell)**
+   ```powershell
+   type $env:USERPROFILE\.ssh\id_ed25519.pub
+   ```
+
 2. In GitHub: **Settings** → **SSH and GPG keys** → **New SSH key**.
 3. Paste the key, name it (e.g., “Laptop-ED25519”), and save.
+
+---
 
 ### 6.5 Test the Connection
 ```bash

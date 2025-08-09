@@ -23,18 +23,49 @@ Git allows:
 ## 2. Setting Up Git for ML
 
 ### Step 1 — Install Git
-Follow the [Git Installation Guide](Git_Installation_Guide.md) for Windows, macOS, or Linux.  
+Follow the [Git Installation Guide](2_Git_Install.md) for Windows, macOS, or Linux.  
 Verify installation:
 ```bash
 git --version
 ```
 
-### Step 2 — Initialize a Repository
-Create a new folder for your ML project and initialize Git:
+### Step 2 — Initialize a Repository and Push to GitHub
+We'll use a repository name `mlops-workshop-pens` for this workshop.
+
+1. **Create a new folder and initialize Git**
 ```bash
-mkdir ml-project
-cd ml-project
+mkdir mlops-workshop-pens
+cd mlops-workshop-pens
 git init
+```
+
+2. **Create an initial file**
+```bash
+echo "# MLOps Workshop PENS" > README.md
+```
+
+3. **Stage and commit the file**
+```bash
+git add .
+git commit -m "Initial commit for MLOps Workshop PENS"
+```
+
+4. **Create a new repository on GitHub**
+   - Go to [https://github.com/new](https://github.com/new)
+   - Repository name: `mlops-workshop-pens`
+   - Keep it **empty** (no README, license, or .gitignore — we already created them locally).
+   - Click **Create repository**.
+
+5. **Link local repo to GitHub remote**  
+Replace `<your-username>` with your GitHub username:
+```bash
+git remote add origin https://github.com/<your-username>/mlops-workshop-pens.git
+```
+
+6. **Push local repo to GitHub**
+```bash
+git branch -M main
+git push -u origin main
 ```
 
 ### Step 3 — Create a `.gitignore` File
@@ -97,36 +128,8 @@ git checkout -b feature/data-cleaning
  ```
 ---
 
-## 4. Tagging Model Versions
-Use **tags** to mark important commits, such as when you train a model ready for production.
 
-**Example:**
-```bash
-# Create a tag
-git tag -a v1.0-model -m "First production-ready model"
-
-# Push tag to remote
-git push origin v1.0-model
-```
-**Naming Tips:**
-- Use semantic versioning: `v1.0-model`, `v1.1-model`.
-- Include experiment purpose if needed: `v2.0-churn-prediction`.
-
----
-
-## 5. Best Practices for ML Git Workflow
-- Commit **code changes** frequently with descriptive messages:
-  ```bash
-  git commit -m "Add preprocessing script for cleaning null values"
-  ```
-- Never commit large datasets directly — use DVC or cloud storage.
-- Keep feature branches focused on one task (e.g., "feature/add-augmentation").
-- Merge into `develop` only after passing tests or review.
-- Merge `develop` into `main` only for stable, tested releases.
-
----
-
-## 6. Quick Command Reference
+## 4. Quick Command Reference
 ```bash
 # Clone a repository
 git clone <repo_url>

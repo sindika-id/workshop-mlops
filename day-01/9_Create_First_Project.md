@@ -1,36 +1,17 @@
-# New Python Project: Bootstrap & GitHub Push Guide
-
-A practical, end‑to‑end checklist to create a clean Python project, initialize Git, and push to GitHub. Includes commands for **Windows (PowerShell)** and **macOS/Linux (bash)**.
-
----
-
-## ✅ High‑Level Checklist
-
-- [ ] Create project folder
-- [ ] Initialize Git
-- [ ] Create and activate Python virtual environment
-- [ ] Create `README.md`
-- [ ] Add `.gitignore` (Python template)
-- [ ] Create `requirements.txt`
-- [ ] (Optional) Add `requirements-dev.txt`
-- [ ] (Optional) Initialize DVC (for data projects)
-- [ ] First commit
-- [ ] Create empty GitHub repository
-- [ ] Add remote & push
-- [ ] Protect secrets (`.env`, tokens) via `.gitignore`
-- [ ] (Optional) Add pre-commit hooks (format/lint)
-- [ ] (Optional) Set up CI (GitHub Actions)
+# Cat–Dog Image Classification: Step-by-Step Project Guide
+This guide walks you through creating a **minimal, runnable** Python project for classifying **cats vs dogs** using **PyTorch** and **torchvision**. It is designed for workshops and first-time project setup.
 
 ---
 
 ## 1) Create Project Folder
 
+**macOS / Linux**
 ```bash
-# macOS/Linux
 mkdir cat-dog && cd cat-dog
 ```
+
+**Windows (PowerShell)**
 ```powershell
-# Windows PowerShell
 mkdir cat-dog; cd cat-dog
 ```
 
@@ -43,14 +24,46 @@ git init
 git config user.name  "Your Name"
 git config user.email "you@example.com"
 ```
-
-> If you use SSH for GitHub, ensure your key is loaded (`ssh -T git@github.com`).
+> If you use SSH for GitHub, ensure your key is loaded: `ssh -T git@github.com`
 
 ---
 
-## 3) Create & Activate Virtual Environment
+## 3) Create Python Project Boilerplate using VS Code
 
-**macOS/Linux**
+1. Open **VS Code**.
+2. **Open the `cat-dog` directory**  
+   `File → Open Folder... → select cat-dog`
+3. Inside VS Code, create the following **folder structure**:
+   ```plaintext
+   cat-dog/
+   ├── README.md
+   ├── requirements.txt
+   ├── src/
+   │   └── __init__.py
+   └── tests/
+   ```
+4. Minimal **README.md** example:
+   ```markdown
+   # Cat Dog Workshop PENS
+
+   This project is for practicing Git, Python, and basic ML workflows.
+   ```
+5. Add **requirements.txt** with dependencies for a minimal PyTorch classifier:
+   ```txt
+   torch
+   torchvision
+   tqdm
+   ```
+   ✅ **Notes**
+   - `torch` → Core PyTorch library for ML/DL.  
+   - `torchvision` → Datasets, transforms, and pre-trained models.  
+   - `tqdm` → Progress bars for training loops.
+
+---
+
+## 4) Create & Activate Virtual Environment
+
+**macOS / Linux**
 ```bash
 python3 -m venv .venv
 source .venv/bin/activate
@@ -60,286 +73,226 @@ pip -V
 
 **Windows (PowerShell)**
 ```powershell
-py -m venv .venv
+python -m venv .venv
 .\.venv\Scripts\Activate.ps1
 python -V
 pip -V
 ```
 
-> To deactivate later: `deactivate`
+*(If you get an execution policy error on Windows, run PowerShell as Administrator and execute `Set-ExecutionPolicy RemoteSigned`.)*
 
 ---
 
-## 4) Create Starter Files
+## 5) Install Dependencies
 
 ```bash
-# macOS/Linux
-touch README.md requirements.txt
-mkdir -p src/cat-dog tests
-```
-```powershell
-# Windows
-ni README.md -ItemType File; ni requirements.txt -ItemType File
-mkdir src\cat-dog, tests
-```
-
-Minimal **README.md**
-```markdown
-# cat-dog
-
-Short description.
-```
-
-## Setup
-```bash
-python -m venv .venv
-source .venv/bin/activate   # Windows: .\.venv\Scripts\Activate.ps1
+pip install --upgrade pip
 pip install -r requirements.txt
 ```
 
 ---
 
-## 5) Add `.gitignore` (Python)
+## 6) Add a .gitignore
 
-Create `.gitignore` with:
+Create a file named **`.gitignore`** in the project root:
+```gitignore
+# Data & model artifacts
+data/
+models/
+*.pt
+*.onnx
+*.h5
 
-```
-# Virtual env
+# Virtual environment & cache
 .venv/
-env/
-venv/
-
-# Byte-compiled / cache
 __pycache__/
-*.py[cod]
-*.pyo
-
-# Distribution / packaging
-build/
-dist/
-*.egg-info/
-
-# Tools
-.pytest_cache/
-.coverage
-htmlcov/
-.mypy_cache/
+*.pyc
 .ipynb_checkpoints/
-
-# OS
-.DS_Store
-Thumbs.db
 
 # Secrets
 .env
-*.env
 ```
-Create file quickly:
+
+Commit it:
 ```bash
-# macOS/Linux
-cat > .gitignore <<'EOF'
-# (paste the block above)
-EOF
-```
-```powershell
-# Windows
-@'
-# (paste the block above)
-'@ | Out-File -Encoding utf8 .gitignore
+git add .gitignore
+git commit -m "Add .gitignore"
 ```
 
 ---
 
-## 6) Pin Dependencies
+## 7) Prepare the Dataset Folders
 
-Edit `requirements.txt` (example):
-```
-numpy~=1.26
-pandas~=2.2
-```
-
-(Optional) `requirements-dev.txt`:
-```
-black~=24.3
-ruff~=0.5
-pytest~=8.2
-pre-commit~=3.7
-```
-
-Install:
+Create the expected directory layout:
 ```bash
-pip install -r requirements.txt
-# Optional dev tools:
-pip install -r requirements-dev.txt
+mkdir -p data/train/cat data/train/dog data/val/cat data/val/dog
 ```
-
-Freeze (optional):
-```bash
-pip freeze > requirements.lock.txt
-```
+> Add a few sample images for each class under the respective folders (start with ~20–50 images per class if possible).
 
 ---
 
-## 7) (Optional) Pre-commit Hooks (format/lint)
+## 8) Create the Training Script
 
-```bash
-pre-commit install
-```
+Create **`train.py`** in the project root with the following **minimal** content:
 
-`.pre-commit-config.yaml`:
-```yaml
-repos:
-  - repo: https://github.com/psf/black
-    rev: 24.3.0
-    hooks: [ {id: black} ]
-  - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: v0.5.0
-    hooks: [ {id: ruff} ]
-```
-
----
-
-## 8) Initialize DVC (Data Projects)
-
-```bash
-pip install "dvc[gdrive]"    # choose remote as needed
-dvc init
-git add .dvc .dvcignore
-git commit -m "Initialize DVC"
-```
-
----
-
-## 9) First Commit
-
-```bash
-git add .
-git commit -m "chore: bootstrap project structure"
-```
-
----
-
-## 10) Create a New GitHub Repository
-
-1. Go to **https://github.com/new**
-2. **Repository name**: `cat-dog`
-3. Choose **Private** or **Public**
-4. **Do not** initialize with README/.gitignore/license (we already have them)
-5. Click **Create repository**
-
-GitHub will show the remote URL, e.g.:
-- SSH: `git@github.com:yourname/cat-dog.git`
-- HTTPS: `https://github.com/yourname/cat-dog.git`
-
----
-
-## 11) Add Remote & Push
-
-**SSH**
-```bash
-git remote add origin git@github.com:yourname/cat-dog.git
-git branch -M main
-git push -u origin main
-```
-
-**HTTPS**
-```bash
-git remote add origin https://github.com/yourname/cat-dog.git
-git branch -M main
-git push -u origin main
-```
-
----
-
-## 12) Project Skeleton (Suggested)
-
-```
-cat-dog/
-├─ .gitignore
-├─ README.md
-├─ requirements.txt
-├─ requirements-dev.txt        # optional
-├─ .pre-commit-config.yaml     # optional
-├─ src/
-│  └─ cat-dog/
-│     └─ __init__.py
-├─ tests/
-│  └─ test_smoke.py
-└─ .venv/                      # created locally, not committed
-```
-
-Create a smoke test (optional):
 ```python
-# tests/test_smoke.py
-def test_truth():
-    assert True
+import torch
+from torch import nn, optim
+from torchvision import datasets, transforms, models
+from torch.utils.data import DataLoader
+from tqdm import tqdm
+
+# ===== 1) Data =====
+train_tf = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+])
+val_tf = transforms.Compose([
+    transforms.Resize((224, 224)),
+    transforms.ToTensor(),
+])
+
+train_data = datasets.ImageFolder("data/train", transform=train_tf)
+val_data   = datasets.ImageFolder("data/val", transform=val_tf)
+
+train_loader = DataLoader(train_data, batch_size=8, shuffle=True)
+val_loader   = DataLoader(val_data, batch_size=8, shuffle=False)
+
+# ===== 2) Model =====
+model = models.resnet18(weights=models.ResNet18_Weights.DEFAULT)
+model.fc = nn.Linear(model.fc.in_features, 2)  # two classes: cat, dog
+
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+# ===== 3) Loss & Optimizer =====
+criterion = nn.CrossEntropyLoss()
+optimizer = optim.Adam(model.parameters(), lr=1e-3)
+
+# ===== 4) Training Loop =====
+for epoch in range(3):  # keep it small for the workshop
+    model.train()
+    total_loss = 0.0
+    for imgs, labels in tqdm(train_loader, desc=f"Epoch {epoch+1}"):
+        imgs, labels = imgs.to(device), labels.to(device)
+        optimizer.zero_grad()
+        outputs = model(imgs)
+        loss = criterion(outputs, labels)
+        loss.backward()
+        optimizer.step()
+        total_loss += loss.item()
+    print(f"Train loss: {total_loss/len(train_loader):.4f}")
+
+    # Validation
+    model.eval()
+    correct, total = 0, 0
+    with torch.no_grad():
+        for imgs, labels in val_loader:
+            imgs, labels = imgs.to(device), labels.to(device)
+            outputs = model(imgs)
+            preds = outputs.argmax(1)
+            correct += (preds == labels).sum().item()
+            total += labels.size(0)
+    print(f"Validation accuracy: {correct/total:.2%}")
+
+# Save weights
+torch.save(model.state_dict(), "catdog_model.pth")
+print("Model saved to catdog_model.pth")
+```
+
+Commit your script:
+```bash
+git add train.py
+git commit -m "Add minimal training script"
+```
+
+---
+
+## 9) Run Training
+
+```bash
+python train.py
+```
+> Expect a quick run (3 epochs). Accuracy depends on how many and what quality images you added.
+
+---
+
+## 10) (Optional) Add a Quick Inference Script
+
+Create **`predict.py`** in the project root:
+
+```python
+import argparse, torch
+from PIL import Image
+from torchvision import transforms, models
+from torch import nn
+
+def main():
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--img", required=True, help="Path to image file")
+    args = ap.parse_args()
+
+    device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+
+    # model
+    model = models.resnet18(weights=None)
+    model.fc = nn.Linear(model.fc.in_features, 2)
+    model.load_state_dict(torch.load("catdog_model.pth", map_location=device))
+    model.to(device).eval()
+
+    tf = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+    ])
+    img = Image.open(args.img).convert("RGB")
+    x = tf(img).unsqueeze(0).to(device)
+
+    with torch.no_grad():
+        logits = model(x)
+        pred = logits.argmax(1).item()
+
+    labels = ["cat", "dog"]
+    print("Prediction:", labels[pred])
+
+if __name__ == "__main__":
+    main()
 ```
 
 Run:
 ```bash
-pytest -q
+python predict.py --img data/val/cat/your_image.jpg
 ```
 
 ---
 
-## 13) Quick “All-in-One” Script (bash)
+## 11) Commit and Push to GitHub
+
+Create a new GitHub repository named **`cat-dog`** (empty: no README/license). Then:
 
 ```bash
-# Adjust repo/user names before running
-set -e
-PROJECT=cat-dog
-USER_GH=yourname
-
-mkdir "$PROJECT" && cd "$PROJECT"
-git init
-python3 -m venv .venv && source .venv/bin/activate
-printf "# %s
-
-Short description.
-" "$PROJECT" > README.md
-printf "numpy~=1.26
-pandas~=2.2
-" > requirements.txt
-
-cat > .gitignore <<'EOF'
-.venv/
-__pycache__/
-*.py[cod]
-build/
-dist/
-*.egg-info/
-.pytest_cache/
-.coverage
-htmlcov/
-.mypy_cache/
-.ipynb_checkpoints/
-.DS_Store
-Thumbs.db
-.env
-*.env
-EOF
-
-mkdir -p src/$PROJECT tests && touch src/$PROJECT/__init__.py tests/test_smoke.py
-git add . && git commit -m "chore: bootstrap project"
+git add .
+git commit -m "Initial runnable cat-dog classifier"
 git branch -M main
-git remote add origin git@github.com:$USER_GH/$PROJECT.git
+git remote add origin https://github.com/<your-username>/cat-dog.git
 git push -u origin main
 ```
 
 ---
 
-## 14) Final Review Checklist (Before Sharing)
+## 12) Done — You Have a Running Project
 
-- [ ] `README.md` describes setup and how to run
-- [ ] Virtual env is excluded by `.gitignore`
-- [ ] Secrets are not committed
-- [ ] `requirements*.txt` install successfully in a clean env
-- [ ] Tests (if any) pass locally
-- [ ] Repo pushed to GitHub and visible
+**You now have:**
+- A clean Python project structure
+- A virtual environment
+- Minimal dependencies
+- Dataset folders
+- A runnable training script (and optional predictor)
+- The project tracked in Git and pushed to GitHub
 
 ---
 
-### Notes
-- For corporate/lab PCs, ensure **Git user/email** match your org policy.
-- Prefer **SSH** for GitHub to avoid repeated credential prompts.
-- Consider enabling **branch protection** and **required status checks** later.
+### Next Steps
+- Log metrics with MLflow
+- Track datasets/models with DVC
+- Add CI (GitHub Actions) to run a quick lint/test
+- Containerize with Docker for reproducible runs

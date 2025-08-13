@@ -7,6 +7,9 @@
 ## 1) Create Your GitHub Account
 
 1. Open `https://github.com/` and click **Sign up**.
+   <p align="left">
+     <img src="images/1_Register_Github/SignUp.png" alt="Sign Up" width="400">
+   </p>
 2. Enter your **email address** and confirm the verification code sent to your inbox.
 3. Set a **strong password**.
 4. Choose a unique **username**.

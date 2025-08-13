@@ -8,49 +8,125 @@
 
 1. Open `https://github.com/` and click **Sign up**.
    <p align="left">
-     <img src="images/1_Register_Github/SignUp.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/1.SignUp.png" alt="Sign Up" width="400">
    </p>
-2. Enter your **email address** and confirm the verification code sent to your inbox.
-3. Set a **strong password**.
-4. Choose a unique **username**.
-5. Select the **Free** plan
-6. Complete onboarding preferences .
+2. Choose Sign Up then Then click button **Continue with Google**
+   <p align="left">
+     <img src="images/1_Register_Github/2.Register.png" alt="Click Sign Up" width="400">
+   </p>
+3. Choose your **Email Address**
+   <p align="left">
+     <img src="images/1_Register_Github/3.ChooseEmail.png" alt="Choose Email" width="400">
+   </p>
+4. Clik **Continue** to grant email Access
+   <p align="left">
+     <img src="images/1_Register_Github/4.Continue.png" alt="Grant Email" width="400">
+   </p>
+5. The form will be auto-filled with your email, username, and country. You can change the username and country, but the email address cannot be changed.
+   <p align="left">
+     <img src="images/1_Register_Github/5.InsertEmail-Username-Country.png" alt="Auto Fill" width="400">
+   </p>
+
+6. Click **Create Account** and wait until Verification Complete
+7. User will be redirect to HGitHub HomePage
+   <p align="left">
+     <img src="images/1_Register_Github/6.HomePageGitHub.png" alt="Account Verification" width="400">
+   </p>
 
 ---
 
-## 2) Verify Your Email
+<!-- ## 2) Verify Your Email
 
-- Check your email for a message from GitHub and click **Verify email address**.  
-  *You must verify your email to create repositories and receive notifications.*
+- Check your email for a message from GitHub and click **Verify email address**.
+  _You must verify your email to create repositories and receive notifications._
 
----
+--- -->
+
+## 2) Download Google Authenticator On Your Phone
+
+### Scan To Get The Code
+
+1. Download **Google Authenticator** on **Playstore**.
+   <p align="left">
+     <img src="images/2_download authenticator/3.0.jpeg" alt="Sign Up" width="100">
+   </p>
+2. **Open** Google Authenticator.
+   <p align="left">
+     <img src="images/2_download authenticator/3.1.jpeg" alt="Sign Up" width="100">
+   </p>
+3. Click Button **Add a code**
+   <p align="left">
+     <img src="images/2_download authenticator/3.2.jpeg" alt="Sign Up" width="100">
+   </p>
+4. Click Button **Scan a QR code**
+   <p align="left">
+     <img src="images/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
+   </p>
 
 ## 3) Secure Your Account (Recommended)
 
 ### Enable Two-Factor Authentication (2FA)
+
 1. In GitHub, click your avatar → **Settings** → **Password and authentication**.
+   <p align="left">
+     <img src="images/3_Enable_Two_Factor_Authentication/1.Setting.png" alt="Sign Up" width="400">
+   </p>
+
 2. Under **Two-factor authentication**, click **Enable two-factor authentication**.
-3. Choose **Authenticator app**.
-4. Save your **Recovery codes** in a secure place.
+    <p align="left">
+     <img src="images/3_Enable_Two_Factor_Authentication/2.EnableTwoFactorAuthentication.png" alt="Sign Up" width="400">
+   </p>
+3. Open **Authenticator app** than click button **Scan a QR code**
+    <p align="left">
+     <img src="images/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
+   </p>
+4. Scan QR.
+   <p align="left">
+     <img src="images/3_Enable_Two_Factor_Authentication/3.3.jpeg" alt="Sign Up" width="400">
+   </p>
+5. Get Code and Input at the Form with It.
+   <p align="left">
+     <img src="images/3_Enable_Two_Factor_Authentication/3.5.jpeg" alt="Sign Up" width="100">
+   </p>
+
+6. Input Code and Get Recovery Code
+   <p align="left">
+     <img src="images/3_Enable_Two_Factor_Authentication/4.authenticated.png" alt="Sign Up" width="400">
+   </p>
+
+7. Click button Download Recovery Code
+   <p align="left">
+     <img src="images/3_Enable_Two_Factor_Authentication/5.SaveRecoveryCode.png" alt="Sign Up" width="400">
+   </p>
+
+8. Success Enable Two Factor Authentication
+   <p align="left">
+     <img src="images/3_Enable_Two_Factor_Authentication/6.DoneSaveSetTwoFactorAuthentication.png" alt="Sign Up" width="400">
+   </p>
 
 ---
 
 ## 4) Install Git Locally
 
 ### Windows
+
 - Install **Git for Windows** from `https://git-scm.com/download/win`.
 - During setup, accept defaults (Git Credential Manager included).
 
 ### macOS
+
 ```bash
 xcode-select --install
 ```
+
 or install via Homebrew:
+
 ```bash
 brew install git
 ```
 
 ### Linux (Debian/Ubuntu)
+
 ```bash
 sudo apt update && sudo apt install -y git
 ```
@@ -69,17 +145,17 @@ git config --global init.defaultBranch main
 
 ---
 
-
 ## 6) Connect to GitHub via SSH (Recommended)
 
 ### 6.1 Check Existing Keys
 
 **macOS / Linux (Terminal)**
+
 ```bash
 ls -al ~/.ssh
 ```
 
-**Windows (PowerShell)** 
+**Windows (PowerShell)**
 
 ```powershell
 Get-ChildItem $env:USERPROFILE\.ssh
@@ -88,6 +164,7 @@ Get-ChildItem $env:USERPROFILE\.ssh
 ---
 
 ### 6.2 Generate a New SSH Key
+
 ```bash
 ssh-keygen -t ed25519 -C "your_email@example.com"
 ```
@@ -97,6 +174,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 ### 6.3 Start the SSH Agent & Add Your Key
 
 **macOS / Linux**
+
 ```bash
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
@@ -105,6 +183,7 @@ ssh-add ~/.ssh/id_ed25519
 **Windows (PowerShell)**
 
 Run as Administrator
+
 ```powershell
 Start-Service ssh-agent
 ssh-add $env:USERPROFILE\.ssh\id_ed25519
@@ -113,14 +192,17 @@ ssh-add $env:USERPROFILE\.ssh\id_ed25519
 ---
 
 ### 6.4 Add the Public Key to GitHub
+
 1. Copy your public key:
 
    **macOS / Linux**
+
    ```bash
    cat ~/.ssh/id_ed25519.pub
    ```
 
    **Windows (PowerShell)**
+
    ```powershell
    type $env:USERPROFILE\.ssh\id_ed25519.pub
    ```
@@ -131,6 +213,7 @@ ssh-add $env:USERPROFILE\.ssh\id_ed25519
 ---
 
 ### 6.5 Test the Connection
+
 ```bash
 ssh -T git@github.com
 ```

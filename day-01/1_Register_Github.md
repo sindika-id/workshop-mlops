@@ -167,6 +167,9 @@ git config --global user.email "your_email@example.com"
 git config --global init.defaultBranch main
 ```
 
+   <p align="left">
+     <img src="images/5_Configure_Git/1.ConfigureGit.png" alt="Sign Up" width="400">
+   </p>
 > Use the same email you verified on GitHub to associate commits with your account.
 
 ---
@@ -175,16 +178,16 @@ git config --global init.defaultBranch main
 
 ### 6.1 Check Existing Keys
 
-**macOS / Linux (Terminal)**
-
-```bash
-ls -al ~/.ssh
-```
-
 **Windows (PowerShell)**
 
 ```powershell
 Get-ChildItem $env:USERPROFILE\.ssh
+```
+
+**macOS / Linux (Terminal)**
+
+```bash
+ls -al ~/.ssh
 ```
 
 ---

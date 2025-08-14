@@ -110,8 +110,34 @@
 
 ### Windows
 
-- Install **Git for Windows** from `https://git-scm.com/download/win`.
-- During setup, accept defaults (Git Credential Manager included).
+1. Download **Git for Windows** from `https://git-scm.com/download/win`.
+   <p align="left">
+     <img src="images/4_Install_Git_Locally/1.0DownloadGit.png" alt="Sign Up" width="400">
+   </p>
+2. Install Git, click download result.
+   <p align="left">
+     <img src="images/4_Install_Git_Locally/1.1.InstallGit.png" alt="Sign Up" width="400">
+   </p>
+3. Click more info for continue run install.
+   <p align="left">
+     <img src="images/4_Install_Git_Locally/2.WindowsProtected.png" alt="Sign Up" width="400">
+   </p>
+4. Click Run Away button for continue install.
+   <p align="left">
+     <img src="images/4_Install_Git_Locally/3.MoreInfo.png" alt="Sign Up" width="400">
+   </p>
+5. Click Install button.
+   <p align="left">
+     <img src="images/4_Install_Git_Locally/4.InstallGit.png" alt="Sign Up" width="400">
+   </p>
+6. Click Finish button.
+   <p align="left">
+     <img src="images/4_Install_Git_Locally/5.FinishInstsall.png" alt="Sign Up" width="400">
+   </p>
+7. Check From Command Prompt with `git`.
+   <p align="left">
+     <img src="images/4_Install_Git_Locally/6.CheckGitFromCMD.png" alt="Sign Up" width="400">
+   </p>
 
 ### macOS
 

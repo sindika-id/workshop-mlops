@@ -168,7 +168,7 @@ git config --global init.defaultBranch main
 ```
 
    <p align="left">
-     <img src="images/5_Configure_Git/1.ConfigureGit.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/5_Configure_Git/1.ConfigureGit.png" alt="Sign Up" width="400">
    </p>
 > Use the same email you verified on GitHub to associate commits with your account.
 
@@ -185,7 +185,7 @@ Get-ChildItem $env:USERPROFILE\.ssh
 ```
 
    <p align="left">
-     <img src="images/6_Connect_Github_With_SSH/1.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/1.png" alt="Sign Up" width="400">
    </p>
 
 **macOS / Linux (Terminal)**
@@ -203,7 +203,7 @@ ssh-keygen -t ed25519 -C "cucupinid@gmail.com"
 ```
 
    <p align="left">
-     <img src="images/6_Connect_Github_With_SSH/2.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/2.png" alt="Sign Up" width="400">
    </p>
 ---
 
@@ -223,12 +223,40 @@ Run as Administrator
 
 ```powershell
 Start-Service ssh-agent
-ssh-add $env:USERPROFILE\.ssh\id_ed25519
+ssh-add $env:USERPROFILE\.ssh\id_ed25519_simulasi
 ```
 
-  <p align="left">
-     <img src="images/6_Connect_Github_With_SSH/3.png" alt="Sign Up" width="400">
+Steps to Enable ssh-agent on Windows
+
+1. Open Powershell Run as Administrator.
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/3.png" alt="Sign Up" width="400">
    </p>
+
+2. `Start-Service ssh-agent` for start ssh service
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/5.png" alt="Sign Up" width="400">
+   </p>
+
+3. Check if the service exists with `Get-Service ssh-agent`.
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/6.png" alt="Sign Up" width="400">
+   </p>
+
+If the status shows Stopped, it means the service exists but is not active.
+If it shows Cannot find any service, it means OpenSSH is not installed.
+
+3. If the service exists but won’t start
+
+`Set-Service ssh-agent -StartupType Automatic`
+`Start-Service ssh-agent`
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/7.png" alt="Sign Up" width="400">
+   </p>
+
 ---
 
 ### 6.4 Add the Public Key to GitHub
@@ -244,11 +272,37 @@ ssh-add $env:USERPROFILE\.ssh\id_ed25519
    **Windows (PowerShell)**
 
    ```powershell
-   type $env:USERPROFILE\.ssh\id_ed25519.pub
+   type $env:USERPROFILE\.ssh\id_ed25519_simulasi.pub
    ```
 
+     <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/4.png" alt="Sign Up" width="400">
+   </p>
+
 2. In GitHub: **Settings** → **SSH and GPG keys** → **New SSH key**.
-3. Paste the key, name it (e.g., “Laptop-ED25519”), and save.
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/8.png" alt="Sign Up" width="400">
+   </p>
+
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/9.png" alt="Sign Up" width="400">
+   </p>
+
+4. Copy Code from: **S.ssh\id_ed25519_simulasi.pub**
+
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/11.png" alt="Sign Up" width="400">
+   </p>
+
+5. Paste the key, name it (e.g., “Laptop-ED25519”), and click **Add SSH key**.
+
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/12.png" alt="Sign Up" width="400">
+   </p>
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/13.png" alt="Sign Up" width="400">
+   </p>
 
 ---
 
@@ -258,6 +312,9 @@ ssh-add $env:USERPROFILE\.ssh\id_ed25519
 ssh -T git@github.com
 ```
 
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/14.png" alt="Sign Up" width="400">
+   </p>
 ---
 
 ## 7) (Alternative) Use HTTPS with a Personal Access Token (PAT)
@@ -265,7 +322,20 @@ ssh -T git@github.com
 If you prefer HTTPS:
 
 1. GitHub → **Settings** → **Developer settings** → **Personal access tokens**.
+
+   <p align="left">
+     <img src="images/1_Register_Github/7_Connect_Github_With_HTTPS/1.png" alt="Sign Up" width="400">
+   </p>
+
 2. Create a **Fine-grained token**, select your repo scope, grant **Contents: Read and write**.
+
+   <p align="left">
+     <img src="images/1_Register_Github/7_Connect_Github_With_HTTPS/3.png" alt="Sign Up" width="400">
+   </p>
+      <p align="left">
+     <img src="images/1_Register_Github/7_Connect_Github_With_HTTPS/4.png" alt="Sign Up" width="400">
+   </p>
+
 3. Use the token as the **password** when Git prompts during `git push`.
 
 ---

@@ -20,6 +20,8 @@ This document provides a **complete, production‑ready setup** for using **Data
 pip install "dvc[gdrive]"
 ```
 
+![alt text](../8_Installing_Dvc/2_InstallDVCwithGoogleDriveSupport.png)
+
 ### Using `conda`
 ```bash
 conda install -c conda-forge dvc dvc-gdrive
@@ -29,6 +31,7 @@ Verify:
 ```bash
 dvc --version
 ```
+![alt text](../8_Installing_Dvc/2_DvcVersion.png)
 
 > `dvc[gdrive]` installs the Google Drive backend via `pydrive2`.
 
@@ -42,7 +45,7 @@ dvc init
 git add .dvc .dvcignore
 git commit -m "Initialize DVC"
 ```
-
+![alt text](images/8_Installing_Dvc/3_InitDvc.png)
 ---
 
 ## 4) Create/Locate a Google Drive Folder
@@ -73,6 +76,7 @@ dvc remote modify gdrive gdrive_acknowledge_abuse true
 git add .dvc/config
 git commit -m "Configure DVC remote on Google Drive"
 ```
+![alt text](images/8_Installing_Dvc/5_ConfigDvcRemote.png)
 
 > The OAuth token is stored under `~/.config/dvc` (Linux/macOS) or `%APPDATA%\dvc` (Windows). **Do not commit tokens.**
 

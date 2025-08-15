@@ -14,7 +14,7 @@ mkdir cat-dog && cd cat-dog
 ```powershell
 mkdir cat-dog; cd cat-dog
 ```
-
+![alt text](images/9_Create_First_Project/1_CreateProject.png)
 ---
 
 ## 2) Initialize Git
@@ -24,6 +24,7 @@ git init
 git config user.name  "Your Name"
 git config user.email "you@example.com"
 ```
+![alt text](images/9_Create_First_Project/2_git_init.png)
 > If you use SSH for GitHub, ensure your key is loaded: `ssh -T git@github.com`
 
 ---
@@ -42,12 +43,14 @@ git config user.email "you@example.com"
    │   └── __init__.py
    └── tests/
    ```
+   ![alt text](images/9_Create_First_Project/3.3_CreateFolderStructure.png)
 4. Minimal **README.md** example:
    ```markdown
    # Cat Dog Workshop PENS
 
    This project is for practicing Git, Python, and basic ML workflows.
    ```
+   ![alt text](images/9_Create_First_Project/3.4_MinimalReadme.png)
 5. Add **requirements.txt** with dependencies for a minimal PyTorch classifier:
    ```txt
    torch
@@ -58,6 +61,8 @@ git config user.email "you@example.com"
    - `torch` → Core PyTorch library for ML/DL.  
    - `torchvision` → Datasets, transforms, and pre-trained models.  
    - `tqdm` → Progress bars for training loops.
+
+    ![alt text](images/9_Create_First_Project/3.5_AddRequirements.png)
 
 ---
 
@@ -78,6 +83,7 @@ python -m venv .venv
 python -V
 pip -V
 ```
+![alt text](images/9_Create_First_Project/4_Venv.png)
 
 *(If you get an execution policy error on Windows, run PowerShell as Administrator and execute `Set-ExecutionPolicy RemoteSigned`.)*
 
@@ -89,6 +95,7 @@ pip -V
 pip install --upgrade pip
 pip install -r requirements.txt
 ```
+![alt text](images/9_Create_First_Project/5_InstallDependencies.png)
 
 ---
 
@@ -112,12 +119,14 @@ __pycache__/
 # Secrets
 .env
 ```
+![alt text](images/9_Create_First_Project/6_gitignore.png)
 
 Commit it:
 ```bash
 git add .gitignore
 git commit -m "Add .gitignore"
 ```
+![alt text](images/9_Create_First_Project/6_CommitGitignore.png)
 
 ---
 
@@ -127,6 +136,8 @@ Create the expected directory layout:
 ```bash
 mkdir -p data/train/cat data/train/dog data/val/cat data/val/dog
 ```
+![alt text](images/9_Create_First_Project/7_DatasetFolder.png)
+
 > Add a few sample images for each class under the respective folders (start with ~20–50 images per class if possible).
 
 ---
@@ -199,12 +210,14 @@ for epoch in range(3):  # keep it small for the workshop
 torch.save(model.state_dict(), "catdog_model.pth")
 print("Model saved to catdog_model.pth")
 ```
+![alt text](images/9_Create_First_Project/8_TrainScript.png)
 
 Commit your script:
 ```bash
 git add train.py
 git commit -m "Add minimal training script"
 ```
+![alt text](images/9_Create_First_Project/8_CommitScript.png)
 
 ---
 
@@ -213,6 +226,8 @@ git commit -m "Add minimal training script"
 ```bash
 python train.py
 ```
+![alt text](images/9_Create_First_Project/9_RunTraining.png)
+
 > Expect a quick run (3 epochs). Accuracy depends on how many and what quality images you added.
 
 ---
@@ -262,6 +277,7 @@ Run:
 ```bash
 python predict.py --img data/val/cat/your_image.jpg
 ```
+![alt text](images/9_Create_First_Project/10_InferenceScript.png)
 
 ---
 
@@ -276,6 +292,7 @@ git branch -M main
 git remote add origin https://github.com/<your-username>/cat-dog.git
 git push -u origin main
 ```
+![alt text](images/9_Create_First_Project/11_CommitPush.png)
 
 ---
 

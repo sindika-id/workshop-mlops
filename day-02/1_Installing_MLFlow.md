@@ -25,12 +25,13 @@ We will primarily focus on **MLflow Tracking & Registry** in this workshop.
 ```bash
 # Create a new virtual environment (recommended)
 python -m venv .venv
-source .venv/bin/activate   # On Linux/Mac
 .venv\Scripts\activate      # On Windows
 
 # Install MLflow
 pip install mlflow
 ```
+
+![alt text](../day-01/images/mlflow/1_InstallMlflow.png)
 
 Verify installation:
 ```bash

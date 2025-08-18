@@ -12,9 +12,23 @@ This document provides a **complete setup guide** for **MinIO** as an S3-compati
 
 ---
 
-## 2) Install MinIO Server
+## 2) Create New Project
 
-- Create a `docker-compose.yml` file in your project root:
+- **Create a new project directory** for MinIO setup
+
+```bash
+# Create and navigate to project directory
+mkdir minio-project
+cd minio-project
+```
+
+![Create New Project](images/9_Installing_Minio/2.png)
+
+---
+
+## 3) Install MinIO Server
+
+Create a `docker-compose.yml` file in your project root:
 
 ```yaml
 services:
@@ -36,11 +50,11 @@ volumes:
   minio_data:
 ```
 
-![Create Docker Compose File](images/9_Installing_Minio/1.png)
+![Create Docker Compose File](images/9_Installing_Minio/3.png)
 
 ---
 
-## 3) Start MinIO Server
+## 4) Start MinIO Server
 
 ### Using Docker Compose (Recommended)
 
@@ -52,7 +66,7 @@ docker-compose up -d
 docker-compose ps
 ```
 
-![Start with Docker Compose](images/9_Installing_Minio/3a.png)
+![Start with Docker Compose](images/9_Installing_Minio/4a.png)
 
 ### Verify MinIO is Running
 
@@ -61,91 +75,78 @@ Check if MinIO is running properly:
 ```bash
 # Check container logs (if using Docker)
 docker logs srn-minio
-
-# Check container status
-docker ps | grep srn-minio
 ```
 
-![Verify MinIO Status](images/9_Installing_Minio/3b.png)
+![Verify MinIO Status](images/9_Installing_Minio/4b.png)
 
-**Access Points:**
-- **API Endpoint**: http://localhost:9000
-- **Web Console**: http://localhost:9001
-- **Default Credentials**: `minioadmin` / `minioadmin`
-
-![MinIO Access Points](images/9_Installing_Minio/3c.png)
+>**Access Points:**
+>- **API Endpoint**: http://localhost:9000
+>- **Web Console**: http://localhost:9001
+>- **Default Credentials**: `minioadmin` / `minioadmin`
 
 ---
 
-## 4) Configure MinIO Web Console
+## 5) Configure MinIO Web Console
 
-### 4a) Access Web Console
+### 5a) Access Web Console
 
 1. Open your browser and navigate to **http://localhost:9001**
 
-![Access MinIO Console](images/9_Installing_Minio/4a1.png)
+![Access MinIO Console](images/9_Installing_Minio/5a1.png)
 
 2. Login with your configured credentials:
    - **Username**: `minioadmin`
    - **Password**: `minioadmin`
 
-![MinIO Login](images/9_Installing_Minio/4a2.png)
+![MinIO Login](images/9_Installing_Minio/5a2.png)
 
-### 4b) Create Your First Bucket
+### 5b) Create Your First Bucket
 
 1. Click **"Buckets"** in the left sidebar
 
-![Navigate to Buckets](images/9_Installing_Minio/4b1.png)
+![Navigate to Buckets](images/9_Installing_Minio/5b1.png)
 
 2. Click **"Create Bucket"** button
 
-![Create Bucket Button](images/9_Installing_Minio/4b2.png)
+![Create Bucket Button](images/9_Installing_Minio/5b2.png)
 
 3. Enter bucket name (e.g., `my-storage`) and click **"Create Bucket"**
 
-![Enter Bucket Name](images/9_Installing_Minio/4b3.png)
+![Enter Bucket Name](images/9_Installing_Minio/5b3.png)
 
 4. Your bucket is now created and ready for use
 
-![Bucket Created Successfully](images/9_Installing_Minio/4b4.png)
+![Bucket Created Successfully](images/9_Installing_Minio/5b4.png)
 
-### 4c) Upload Files to Bucket
+### 5c) Upload Files to Bucket
 
-1. Click on your newly created bucket to open it
+1. Go to **Object Browser** and select your bucket
 
-![Open Bucket](images/9_Installing_Minio/4c1.png)
+![Open Bucket](images/9_Installing_Minio/5c1.png)
 
-2. Click **"Upload"** button to upload files
+2. Click **"Upload"** button to upload files, then drag and drop files or click to browse and select files
 
-![Upload Button](images/9_Installing_Minio/4c2.png)
+![Upload Button](images/9_Installing_Minio/5c2.png)
 
-3. Drag and drop files or click to browse and select files
+3. Files are now uploaded and visible in your bucket
 
-![Upload Files](images/9_Installing_Minio/4c3.png)
-
-4. Files are now uploaded and visible in your bucket
-
-![Files Uploaded](images/9_Installing_Minio/4c4.png)
+![Files Uploaded](images/9_Installing_Minio/5c3.png)
 
 ---
 
-## 5) Install and Configure MinIO Client (mc)
+## 6) Install and Configure MinIO Client (mc)
 
-### 5a) Install MinIO Client
+### 6a) Install MinIO Client
 
-**Using Docker (Recommended):**
+**Option 1: Using Docker**
+
 ```bash
-# Create an alias for MinIO client
-echo 'alias mc="docker run --rm -it --network host minio/mc"' >> ~/.bashrc
-source ~/.bashrc
-
-# Or use it directly
 docker run --rm -it --network host minio/mc
 ```
 
-![Install MinIO Client Docker](images/9_Installing_Minio/5a1.png)
+![Install MinIO Client Docker](images/9_Installing_Minio/6a1.png)
 
-**Direct Installation:**
+**Option 2: Direct Installation**
 
 **Linux:**
 ```bash
@@ -164,31 +165,32 @@ brew install minio/stable/mc
 Invoke-WebRequest -Uri "https://dl.min.io/client/mc/release/windows-amd64/mc.exe" -OutFile "mc.exe"
 ```
 
-![Install MinIO Client Direct](images/9_Installing_Minio/5a2.png)
+![Install MinIO Client Direct](images/9_Installing_Minio/6a2.png)
 
-### 5b) Configure MinIO Client
+### 6b) Configure MinIO Client
 
 ```bash
 # Add your MinIO server configuration (matching your Docker setup)
-mc alias set local http://localhost:9000 minioadmin minioadmin
+./mc alias set local http://localhost:9000 minioadmin minioadmin
 
 # Test connection
-mc admin info local
+./mc admin info local
 
 # List buckets
-mc ls local
+./mc ls local
 
 # Create bucket via CLI
-mc mb local/test-bucket
+./mc mb local/test-bucket
 ```
 
-![Configure MinIO Client](images/9_Installing_Minio/5b.png)
+![Configure MinIO Client - 1](images/9_Installing_Minio/6b1.png)
+![Configure MinIO Client - 2](images/9_Installing_Minio/6b2.png)
 
 ---
 
-## 6) Team Collaboration Setup
+## 7) Team Collaboration Setup
 
-### 6a) Share Docker Compose Configuration
+### 7a) Share Docker Compose Configuration
 
 Create a shared `docker-compose.yml` for your team:
 
@@ -212,9 +214,9 @@ volumes:
   minio_data:
 ```
 
-![Team Docker Compose](images/9_Installing_Minio/6a.png)
+![Team Docker Compose](images/9_Installing_Minio/7a.png)
 
-### 6b) Environment Variables for Team
+### 7b) Environment Variables for Team
 
 Create a `.env` file (add to `.gitignore`):
 
@@ -224,9 +226,9 @@ MINIO_ROOT_USER=your-team-admin
 MINIO_ROOT_PASSWORD=your-secure-password-123
 ```
 
-![Environment Variables](images/9_Installing_Minio/6b.png)
+![Environment Variables](images/9_Installing_Minio/7b.png)
 
-### 6c) Team Member Setup
+### 7c) Team Member Setup
 
 For team members to use the same MinIO instance:
 
@@ -242,87 +244,133 @@ docker-compose up -d
 # Use credentials from .env file or defaults
 ```
 
-![Team Member Setup](images/9_Installing_Minio/6c.png)
-
 ---
 
-## 7) Production Deployment Options
+## 8) User and Policy Management
 
-### 7a) Production Docker Compose
+### 8a) User Management
 
-For production, enhance your configuration:
+**Via Terminal:**
 
-```yaml
-version: '3.8'
-
-services:
-  minio:
-    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
-    container_name: srn-minio-prod
-    restart: unless-stopped
-    environment:
-      MINIO_ROOT_USER: ${MINIO_ROOT_USER}
-      MINIO_ROOT_PASSWORD: ${MINIO_ROOT_PASSWORD}
-      MINIO_BROWSER_REDIRECT_URL: https://your-domain.com:9001
-    volumes:
-      - minio_data:/data
-      - ./certs:/root/.minio/certs  # For SSL certificates
-    ports:
-      - '9000:9000'
-      - '9001:9001'
-    command: server /data --console-address ":9001"
-    healthcheck:
-      test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
-      interval: 30s
-      timeout: 20s
-      retries: 3
-    networks:
-      - minio-network
-
-networks:
-  minio-network:
-    driver: bridge
-
-volumes:
-  minio_data:
-```
-
-![Production Docker Compose](images/9_Installing_Minio/7a.png)
-
-### 7b) Container Management Commands
-
-```bash
-# Start the production setup
-docker-compose -f docker-compose.prod.yml up -d
-
-# View logs
-docker-compose logs -f minio
-
-# Stop services
-docker-compose down
-
-# Update MinIO (with data preservation)
-docker-compose pull
-docker-compose up -d
-
-# Backup data volume
-docker run --rm -v minio_data:/data -v $(pwd):/backup alpine tar czf /backup/minio-backup.tar.gz -C /data .
-```
-
-![Container Management](images/9_Installing_Minio/7b.png)
-
----
-
-## 8) User Management
-
-### 8a) Create Additional Users
-
+- **Create a new user**
 ```bash
 # Create a new user via MinIO Client
-mc admin user add local newuser newpassword123
+./mc admin user add local newuser newpassword123
+```
+![Create User CLI](images/9_Installing_Minio/8a1.png)
 
+- **List and manage users**
+```bash
+# List all users
+./mc admin user list local
+
+# Disable a user
+./mc admin user disable local newuser
+
+# Enable a user
+./mc admin user enable local newuser
+
+# Remove a user
+./mc admin user remove local newuser
+```
+
+**Via Web Console:**
+
+1. In MinIO web console, navigate to **"Identity"** → **"Users"**
+
+![Navigate to Users](images/9_Installing_Minio/8a2.png)
+
+2. Click **"Create User"** to add a new user
+
+![Create User Button](images/9_Installing_Minio/8a3.png)
+
+3. Fill in user details (username, password, confirm password) then click **"Save"** to create the user
+
+![Create User Form](images/9_Installing_Minio/8a4.png)
+
+4. User is now created and visible in the users list
+
+![User Created Successfully](images/9_Installing_Minio/8a5.png)
+
+---
+
+### 8b) Policy Management and Assignment
+
+**Via Terminal:**
+
+- **Create a policy JSON file**
+```bash
 # Create a policy for specific permissions
-cat > user-policy.json << EOF
+echo '{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Effect": "Allow",
+      "Action": [
+        "s3:GetObject",
+        "s3:PutObject",
+        "s3:DeleteObject",
+        "s3:ListBucket"
+      ],
+      "Resource": [
+        "arn:aws:s3:::my-storage",
+        "arn:aws:s3:::my-storage/*"
+      ]
+    }
+  ]
+}' > user-policy.json
+```
+![Create Policy File](images/9_Installing_Minio/8b1.png)
+
+- **Fix encoding issue in VS Code**
+
+1. Open VS Code and open the `user-policy.json` file
+
+2. Look at the bottom status bar - you'll see encoding info (e.g., "UTF-16 LE" or "UTF-8 with BOM")
+
+![Fix JSON Encoding](images/9_Installing_Minio/8b2.png)
+
+3. Click on the encoding indicator in the bottom status bar
+
+4. Select **"Save with Encoding"** from the dropdown menu
+
+![Fix JSON Encoding](images/9_Installing_Minio/8b3.png)
+
+5. Choose **"UTF-8"** (without BOM) from the encoding list
+
+![Fix JSON Encoding](images/9_Installing_Minio/8b4.png)
+
+- **Create and attach policy to user**
+```bash
+# Create policy in MinIO
+./mc admin policy create local user-policy user-policy.json
+
+# Attach policy to user
+./mc admin policy attach local user-policy --user newuser
+
+# List policies
+./mc admin policy list local
+
+# Detach policy from user (if needed)
+./mc admin policy detach local user-policy --user newuser
+```
+![Policy Management CLI](images/9_Installing_Minio/8b5.png)
+![Policy Management CLI](images/9_Installing_Minio/8b6.png)
+
+**Via Web Console:**
+
+1. In MinIO web console, navigate to **"Policies"**
+
+![Navigate to Policies](images/9_Installing_Minio/8b7.png)
+
+
+2. Click **"Create Policy"** button
+
+![Create Policy Button](images/9_Installing_Minio/8b8.png)
+
+3. Enter policy name (e.g., `user-policy`) and paste the JSON policy content:
+
+```json
 {
   "Version": "2012-10-17",
   "Statement": [
@@ -341,28 +389,31 @@ cat > user-policy.json << EOF
     }
   ]
 }
-EOF
-
-# Add policy and assign to user
-mc admin policy add local user-policy user-policy.json
-mc admin policy set local user-policy user=newuser
 ```
 
-![User Management](images/9_Installing_Minio/8a.png)
+![Enter Policy Details](images/9_Installing_Minio/8b9.png)
 
-### 8b) Manage Users via Web Console
+4. Policy is now created and can be seen in the list.
 
-1. In MinIO web console, navigate to **"Identity"** → **"Users"**
+![Save Policy](images/9_Installing_Minio/8b10.png)
 
-![Navigate to Users](images/9_Installing_Minio/8b1.png)
+5. Go back to **"Identity"** → **"Users"** and select your user
 
-2. Click **"Create User"** to add a new user
+![Select User for Policy](images/9_Installing_Minio/8b11.png)
 
-![Create User Button](images/9_Installing_Minio/8b2.png)
+6. Click **"Policies"** tab and then **"Assign Policies"**
 
-3. Fill in user details and assign policies
+![Attach Policies Tab](images/9_Installing_Minio/8b12.png)
 
-![Create User Form](images/9_Installing_Minio/8b3.png)
+7. Select the policy you created and click **"Save"**
+
+![Select and Save Policy](images/9_Installing_Minio/8b13.png)
+
+8. Policy is now attached to the user
+
+![Policy Attached Successfully](images/9_Installing_Minio/8b14.png)
+
+>**Note:** This policy gives the user full read/write access to the "my-storage" bucket only. Change "my-storage" to your actual bucket name.
 
 ---
 
@@ -462,12 +513,11 @@ MINIO_BROWSER_REDIRECT_URL=http://localhost:9001
 MINIO_SERVER_ACCESS_LOG_ENABLE=false  # Reduce logging overhead
 ```
 
-![Performance Optimization](images/9_Installing_Minio/11.png)
-
 ---
 
 ## 12) Minimal End‑to‑End Example
 
+**Bash (Linux/macOS):**
 ```bash
 # 1) Create docker-compose.yml
 cat > docker-compose.yml << EOF
@@ -501,10 +551,46 @@ echo "Hello MinIO!" > test.txt
 docker run --rm -it -v $(pwd):/data --network host minio/mc cp /data/test.txt local/test-bucket/
 ```
 
+**PowerShell (Windows):**
+```powershell
+# 1) Create docker-compose.yml
+@'
+services:
+  minio:
+    image: minio/minio:RELEASE.2025-04-22T22-12-26Z
+    container_name: srn-minio
+    restart: unless-stopped
+    environment:
+      MINIO_ROOT_USER: minioadmin
+      MINIO_ROOT_PASSWORD: minioadmin
+    volumes:
+      - minio_data:/data
+    ports:
+      - '9000:9000'
+      - '9001:9001'
+    command: server /data --console-address ":9001"
+volumes:
+  minio_data:
+'@ | Out-File -FilePath "docker-compose.yml" -Encoding UTF8
+
+# 2) Start MinIO
+docker-compose up -d
+
+# 3) Install MinIO client
+docker run --rm -it --network host minio/mc alias set local http://localhost:9000 minioadmin minioadmin
+
+# 4) Create bucket and upload file
+docker run --rm -it --network host minio/mc mb local/test-bucket
+"Hello MinIO!" | Out-File -FilePath "test.txt" -Encoding UTF8
+docker run --rm -it -v ${PWD}:/data --network host minio/mc cp /data/test.txt local/test-bucket/
+```
+
 **Access MinIO Console:**
 - Open http://localhost:9001
 - Login with `minioadmin` / `minioadmin`
 - Navigate to buckets to see your uploaded file
+
+![Minimal Example Result](images/9_Installing_Minio/12.png)
 
 ---
 
@@ -519,39 +605,6 @@ docker run --rm -it -v $(pwd):/data --network host minio/mc cp /data/test.txt lo
 - **Keep Docker images updated** regularly
 - **Use strong passwords** for all user accounts
 - **Restrict network access** in production environments
-
-![Security Best Practices](images/9_Installing_Minio/13.png)
-
----
-
-## 14) Data Backup and Recovery
-
-### 14a) Backup Data Volume
-
-```bash
-# Create backup of MinIO data
-docker run --rm -v minio_data:/data -v $(pwd):/backup \
-  alpine tar czf /backup/minio-backup-$(date +%Y%m%d).tar.gz -C /data .
-
-# List backups
-ls -la minio-backup-*.tar.gz
-```
-
-### 14b) Restore Data Volume
-
-```bash
-# Stop MinIO
-docker-compose down
-
-# Restore data from backup
-docker run --rm -v minio_data:/data -v $(pwd):/backup \
-  alpine tar xzf /backup/minio-backup-YYYYMMDD.tar.gz -C /data
-
-# Start MinIO
-docker-compose up -d
-```
-
-![Backup and Recovery](images/9_Installing_Minio/14.png)
 
 ---
 

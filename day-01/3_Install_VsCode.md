@@ -8,7 +8,16 @@ This guide covers installing Visual Studio Code (VS Code) on **Windows**, **macO
 
 1. Go to the official site:  
    [https://code.visualstudio.com/](https://code.visualstudio.com/)
+
+<p align="left">
+        <img src="images/2_Git_Install/16.png" alt="Sign Up" width="400">
+      </p>
+
 2. Click **Download for Windows**.
+
+<p align="left">
+        <img src="images/2_Git_Install/16.png" alt="Sign Up" width="400">
+      </p>
 3. Run the installer and follow prompts:
    - Accept the license agreement.
    - Select installation location.

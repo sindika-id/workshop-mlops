@@ -8,29 +8,29 @@
 
 1. Open `https://github.com/` and click **Sign up**.
    <p align="left">
-     <img src="images/1_Register_Github/1.SignUp.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/1_Sign_Up_Github/1.SignUp.png" alt="Sign Up" width="400">
    </p>
 2. Choose Sign Up then Then click button **Continue with Google**
    <p align="left">
-     <img src="images/1_Register_Github/2.Register.png" alt="Click Sign Up" width="400">
+     <img src="images/1_Register_Github/1_Sign_Up_Github/2.Register.png" alt="Click Sign Up" width="400">
    </p>
 3. Choose your **Email Address**
    <p align="left">
-     <img src="images/1_Register_Github/3.ChooseEmail.png" alt="Choose Email" width="400">
+     <img src="images/1_Register_Github/1_Sign_Up_Github/3.ChooseEmail.png" alt="Choose Email" width="400">
    </p>
 4. Clik **Continue** to grant email Access
    <p align="left">
-     <img src="images/1_Register_Github/4.Continue.png" alt="Grant Email" width="400">
+     <img src="images/1_Register_Github/1_Sign_Up_Github/4.Continue.png" alt="Grant Email" width="400">
    </p>
 5. The form will be auto-filled with your email, username, and country. You can change the username and country, but the email address cannot be changed.
    <p align="left">
-     <img src="images/1_Register_Github/5.InsertEmail-Username-Country.png" alt="Auto Fill" width="400">
+     <img src="images/1_Register_Github/1_Sign_Up_Github/5.InsertEmail-Username-Country.png" alt="Auto Fill" width="400">
    </p>
 
 6. Click **Create Account** and wait until Verification Complete
 7. User will be redirect to HGitHub HomePage
    <p align="left">
-     <img src="images/1_Register_Github/6.HomePageGitHub.png" alt="Account Verification" width="400">
+     <img src="images/1_Register_Github/1_Sign_Up_Github/6.HomePageGitHub.png" alt="Account Verification" width="400">
    </p>
 
 ---
@@ -48,19 +48,19 @@
 
 1. Download **Google Authenticator** on **Playstore**.
    <p align="left">
-     <img src="images/2_download authenticator/3.0.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download authenticator/3.0.jpeg" alt="Sign Up" width="100">
    </p>
 2. **Open** Google Authenticator.
    <p align="left">
-     <img src="images/2_download authenticator/3.1.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download authenticator/3.1.jpeg" alt="Sign Up" width="100">
    </p>
 3. Click Button **Add a code**
    <p align="left">
-     <img src="images/2_download authenticator/3.2.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download authenticator/3.2.jpeg" alt="Sign Up" width="100">
    </p>
 4. Click Button **Scan a QR code**
    <p align="left">
-     <img src="images/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
    </p>
 
 ## 3) Secure Your Account (Recommended)
@@ -69,7 +69,7 @@
 
 1. In GitHub, click your avatar → **Settings** → **Password and authentication**.
    <p align="left">
-     <img src="images/3_Enable_Two_Factor_Authentication/1.Setting.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/3_Enable_Two_Factor_Authentication/1.Setting.png" alt="Sign Up" width="400">
    </p>
 
 2. Under **Two-factor authentication**, click **Enable two-factor authentication**.
@@ -78,30 +78,30 @@
    </p>
 3. Open **Authenticator app** than click button **Scan a QR code**
     <p align="left">
-     <img src="images/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
    </p>
 4. Scan QR.
    <p align="left">
-     <img src="images/3_Enable_Two_Factor_Authentication/3.3.jpeg" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/3_Enable_Two_Factor_Authentication/3.3.jpeg" alt="Sign Up" width="400">
    </p>
 5. Get Code and Input at the Form with It.
    <p align="left">
-     <img src="images/3_Enable_Two_Factor_Authentication/3.5.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/3_Enable_Two_Factor_Authentication/3.5.jpeg" alt="Sign Up" width="100">
    </p>
 
 6. Input Code and Get Recovery Code
    <p align="left">
-     <img src="images/3_Enable_Two_Factor_Authentication/4.authenticated.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/3_Enable_Two_Factor_Authentication/4.authenticated.png" alt="Sign Up" width="400">
    </p>
 
 7. Click button Download Recovery Code
    <p align="left">
-     <img src="images/3_Enable_Two_Factor_Authentication/5.SaveRecoveryCode.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/3_Enable_Two_Factor_Authentication/5.SaveRecoveryCode.png" alt="Sign Up" width="400">
    </p>
 
 8. Success Enable Two Factor Authentication
    <p align="left">
-     <img src="images/3_Enable_Two_Factor_Authentication/6.DoneSaveSetTwoFactorAuthentication.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/3_Enable_Two_Factor_Authentication/6.DoneSaveSetTwoFactorAuthentication.png" alt="Sign Up" width="400">
    </p>
 
 ---
@@ -112,31 +112,31 @@
 
 1. Download **Git for Windows** from `https://git-scm.com/download/win`.
    <p align="left">
-     <img src="images/4_Install_Git_Locally/1.0DownloadGit.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/4_Install_Git_Locally/1.0DownloadGit.png" alt="Sign Up" width="400">
    </p>
 2. Install Git, click download result.
    <p align="left">
-     <img src="images/4_Install_Git_Locally/1.1.InstallGit.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/4_Install_Git_Locally/1.1.InstallGit.png" alt="Sign Up" width="400">
    </p>
 3. Click more info for continue run install.
    <p align="left">
-     <img src="images/4_Install_Git_Locally/2.WindowsProtected.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/4_Install_Git_Locally/2.WindowsProtected.png" alt="Sign Up" width="400">
    </p>
 4. Click Run Away button for continue install.
    <p align="left">
-     <img src="images/4_Install_Git_Locally/3.MoreInfo.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/4_Install_Git_Locally/3.MoreInfo.png" alt="Sign Up" width="400">
    </p>
 5. Click Install button.
    <p align="left">
-     <img src="images/4_Install_Git_Locally/4.InstallGit.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/4_Install_Git_Locally/4.InstallGit.png" alt="Sign Up" width="400">
    </p>
 6. Click Finish button.
    <p align="left">
-     <img src="images/4_Install_Git_Locally/5.FinishInstsall.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/4_Install_Git_Locally/5.FinishInstsall.png" alt="Sign Up" width="400">
    </p>
 7. Check From Command Prompt with `git`.
    <p align="left">
-     <img src="images/4_Install_Git_Locally/6.CheckGitFromCMD.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/4_Install_Git_Locally/6.CheckGitFromCMD.png" alt="Sign Up" width="400">
    </p>
 
 ### macOS
@@ -168,7 +168,7 @@ git config --global init.defaultBranch main
 ```
 
    <p align="left">
-     <img src="images/5_Configure_Git/1.ConfigureGit.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/5_Configure_Git/1.ConfigureGit.png" alt="Sign Up" width="400">
    </p>
 > Use the same email you verified on GitHub to associate commits with your account.
 
@@ -184,6 +184,10 @@ git config --global init.defaultBranch main
 Get-ChildItem $env:USERPROFILE\.ssh
 ```
 
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/1.png" alt="Sign Up" width="400">
+   </p>
+
 **macOS / Linux (Terminal)**
 
 ```bash
@@ -195,9 +199,12 @@ ls -al ~/.ssh
 ### 6.2 Generate a New SSH Key
 
 ```bash
-ssh-keygen -t ed25519 -C "your_email@example.com"
+ssh-keygen -t ed25519 -C "cucupinid@gmail.com"
 ```
 
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/2.png" alt="Sign Up" width="400">
+   </p>
 ---
 
 ### 6.3 Start the SSH Agent & Add Your Key
@@ -207,6 +214,7 @@ ssh-keygen -t ed25519 -C "your_email@example.com"
 ```bash
 eval "$(ssh-agent -s)"
 ssh-add ~/.ssh/id_ed25519
+
 ```
 
 **Windows (PowerShell)**
@@ -215,8 +223,39 @@ Run as Administrator
 
 ```powershell
 Start-Service ssh-agent
-ssh-add $env:USERPROFILE\.ssh\id_ed25519
+ssh-add $env:USERPROFILE\.ssh\id_ed25519_simulasi
 ```
+
+Steps to Enable ssh-agent on Windows
+
+1. Open Powershell Run as Administrator.
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/3.png" alt="Sign Up" width="400">
+   </p>
+
+2. `Start-Service ssh-agent` for start ssh service
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/5.png" alt="Sign Up" width="400">
+   </p>
+
+3. Check if the service exists with `Get-Service ssh-agent`.
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/6.png" alt="Sign Up" width="400">
+   </p>
+
+If the status shows Stopped, it means the service exists but is not active.
+If it shows Cannot find any service, it means OpenSSH is not installed.
+
+3. If the service exists but won’t start
+
+`Set-Service ssh-agent -StartupType Automatic`
+`Start-Service ssh-agent`
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/7.png" alt="Sign Up" width="400">
+   </p>
 
 ---
 
@@ -233,11 +272,37 @@ ssh-add $env:USERPROFILE\.ssh\id_ed25519
    **Windows (PowerShell)**
 
    ```powershell
-   type $env:USERPROFILE\.ssh\id_ed25519.pub
+   type $env:USERPROFILE\.ssh\id_ed25519_simulasi.pub
    ```
 
+     <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/4.png" alt="Sign Up" width="400">
+   </p>
+
 2. In GitHub: **Settings** → **SSH and GPG keys** → **New SSH key**.
-3. Paste the key, name it (e.g., “Laptop-ED25519”), and save.
+
+<p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/8.png" alt="Sign Up" width="400">
+   </p>
+
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/9.png" alt="Sign Up" width="400">
+   </p>
+
+4. Copy Code from: **S.ssh\id_ed25519_simulasi.pub**
+
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/11.png" alt="Sign Up" width="400">
+   </p>
+
+5. Paste the key, name it (e.g., “Laptop-ED25519”), and click **Add SSH key**.
+
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/12.png" alt="Sign Up" width="400">
+   </p>
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/13.png" alt="Sign Up" width="400">
+   </p>
 
 ---
 
@@ -247,6 +312,9 @@ ssh-add $env:USERPROFILE\.ssh\id_ed25519
 ssh -T git@github.com
 ```
 
+   <p align="left">
+     <img src="images/1_Register_Github/6_Connect_Github_With_SSH/14.png" alt="Sign Up" width="400">
+   </p>
 ---
 
 ## 7) (Alternative) Use HTTPS with a Personal Access Token (PAT)
@@ -254,7 +322,20 @@ ssh -T git@github.com
 If you prefer HTTPS:
 
 1. GitHub → **Settings** → **Developer settings** → **Personal access tokens**.
+
+   <p align="left">
+     <img src="images/1_Register_Github/7_Connect_Github_With_HTTPS/1.png" alt="Sign Up" width="400">
+   </p>
+
 2. Create a **Fine-grained token**, select your repo scope, grant **Contents: Read and write**.
+
+   <p align="left">
+     <img src="images/1_Register_Github/7_Connect_Github_With_HTTPS/3.png" alt="Sign Up" width="400">
+   </p>
+      <p align="left">
+     <img src="images/1_Register_Github/7_Connect_Github_With_HTTPS/4.png" alt="Sign Up" width="400">
+   </p>
+
 3. Use the token as the **password** when Git prompts during `git push`.
 
 ---

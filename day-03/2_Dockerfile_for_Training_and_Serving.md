@@ -42,15 +42,27 @@ COPY . .
 CMD ["python", "train.py"]
 ```
 
+![Create Training Dockerfile](images/2_Dockerfile_for_Training_and_Serving/1a.png)
+
 Build the image:
 ```bash
 docker build -f Dockerfile.train -t ml-train:latest .
 ```
 
+![Build Training Image](images/2_Dockerfile_for_Training_and_Serving/1b.png)
+
 Run training:
+**Bash (Linux/macOS):**
 ```bash
-docker run --rm -it -v $(pwd)/data:/app/data ml-train:latest
+docker run --rm -it -v $(pwd):/app ml-train:latest
 ```
+
+**PowerShell (Windows):**
+```powershell
+docker run --rm -it -v "${PWD}:/app" ml-train:latest
+```
+
+![Run Training Container](images/2_Dockerfile_for_Training_and_Serving/1c.png)
 
 ---
 
@@ -81,17 +93,25 @@ EXPOSE 8000
 CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
+![Create Serving Dockerfile](images/2_Dockerfile_for_Training_and_Serving/2a.png)
+
 Build the image:
 ```bash
 docker build -f Dockerfile.serve -t ml-serve:latest .
 ```
+
+![Build Serving Image](images/2_Dockerfile_for_Training_and_Serving/2b.png)
 
 Run serving:
 ```bash
 docker run --rm -it -p 8000:8000 ml-serve:latest
 ```
 
+![Run Serving Container](images/2_Dockerfile_for_Training_and_Serving/2c.png)
+
 Access the API at 👉 http://localhost:8000/docs  
+
+![FastAPI Docs](images/2_Dockerfile_for_Training_and_Serving/2d.png)
 
 ---
 
@@ -99,6 +119,7 @@ Access the API at 👉 http://localhost:8000/docs
 
 Reduce image size by separating build & runtime layers:
 
+Example `Dockerfile.multistage`:
 ```dockerfile
 FROM python:3.10-slim AS builder
 
@@ -119,10 +140,32 @@ COPY . .
 CMD ["python", "train.py"]
 ```
 
+![Multi-stage Dockerfile](images/2_Dockerfile_for_Training_and_Serving/3a.png)
+
+Build the image:
+```bash
+docker build -f Dockerfile.multistage -t ml-train-optimized:latest .
+```
+
+![Build Multi-stage Image](images/2_Dockerfile_for_Training_and_Serving/3b.png)
+
+Run the optimized training:
+**Bash (Linux/macOS):**
+```bash
+docker run --rm -it -v $(pwd):/app ml-train-optimized:latest
+```
+
+**PowerShell (Windows):**
+```powershell
+docker run --rm -it -v "${PWD}:/app" ml-train-optimized:latest
+```
+
+![Run Optimized Training Container](images/2_Dockerfile_for_Training_and_Serving/3c.png)
+
 ---
 
 ## ✅ Summary
 - Training and serving should use **different Dockerfiles**.  
 - Training: heavy, includes ML frameworks.  
 - Serving: lightweight, focused on inference.  
-- Multi-stage builds reduce size and improve portability.  
+- Multi-stage builds reduce size and improve portability.

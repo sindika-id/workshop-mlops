@@ -48,19 +48,19 @@
 
 1. Download **Google Authenticator** on **Playstore**.
    <p align="left">
-     <img src="images/1_Register_Github/2_download authenticator/3.0.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download_Authenticator/3.0.jpeg" alt="Sign Up" width="100">
    </p>
 2. **Open** Google Authenticator.
    <p align="left">
-     <img src="images/1_Register_Github/2_download authenticator/3.1.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download_Authenticator/3.1.jpeg" alt="Sign Up" width="100">
    </p>
 3. Click Button **Add a code**
    <p align="left">
-     <img src="images/1_Register_Github/2_download authenticator/3.2.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download_Authenticator/3.2.jpeg" alt="Sign Up" width="100">
    </p>
 4. Click Button **Scan a QR code**
    <p align="left">
-     <img src="images/1_Register_Github/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download_Authenticator/3.3.jpeg" alt="Sign Up" width="100">
    </p>
 
 ## 3) Secure Your Account (Recommended)
@@ -74,11 +74,11 @@
 
 2. Under **Two-factor authentication**, click **Enable two-factor authentication**.
     <p align="left">
-     <img src="images/3_Enable_Two_Factor_Authentication/2.EnableTwoFactorAuthentication.png" alt="Sign Up" width="400">
+     <img src="images/1_Register_Github/3_Enable_Two_Factor_Authentication/2.EnableTwoFactorAuthentication.png" alt="Sign Up" width="400">
    </p>
 3. Open **Authenticator app** than click button **Scan a QR code**
     <p align="left">
-     <img src="images/1_Register_Github/2_download authenticator/3.3.jpeg" alt="Sign Up" width="100">
+     <img src="images/1_Register_Github/2_download_Authenticator/3.3.jpeg" alt="Sign Up" width="100">
    </p>
 4. Scan QR.
    <p align="left">

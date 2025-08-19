@@ -46,6 +46,8 @@ Verify installation:
 docker --version
 ```
 
+![Docker Version Check](images/1_intro_to_Docker_for_ML/2.png)
+
 ---
 
 ## 🛠 Step 3: First Docker Container
@@ -55,16 +57,22 @@ Run a hello-world container:
 docker run hello-world
 ```
 
+![Docker Hello World](images/1_intro_to_Docker_for_ML/3a.png)
+
 Run a Python container:
 ```bash
 docker run -it --rm python:3.10 bash
 ```
+
+![Docker Python Container](images/1_intro_to_Docker_for_ML/3b.png)
 
 Inside the container:
 ```bash
 python --version
 exit
 ```
+
+![Python Version in Container](images/1_intro_to_Docker_for_ML/3c.png)
 
 ---
 
@@ -89,30 +97,48 @@ COPY . .
 CMD ["python", "train.py"]
 ```
 
+![Create Dockerfile](images/1_intro_to_Docker_for_ML/4a.png)
+
 Build the image:
 ```bash
 docker build -t ml-workshop:latest .
 ```
+
+![Docker Build](images/1_intro_to_Docker_for_ML/4b.png)
 
 Run the container:
 ```bash
 docker run --rm -it ml-workshop:latest
 ```
 
+![Docker Run](images/1_intro_to_Docker_for_ML/4c.png)
+
 ---
 
 ## 🧩 Step 5: Mounting Volumes
 
 To persist data outside containers:
+**Bash (Linux/macOS):**
 ```bash
-docker run --rm -it -v $(pwd)/data:/app/data ml-workshop:latest
+docker run --rm -it -v $(pwd):/app ml-workshop:latest
 ```
 
+**PowerShell (Windows):**
+```powershell
+docker run --rm -it -v "${PWD}:/app" ml-workshop:latest
+```
+
+![Docker Volume Mount](images/1_intro_to_Docker_for_ML/5a.png)
+
 Now, datasets and trained models are saved on your host machine.  
+
+![Volume Persistence](images/1_intro_to_Docker_for_ML/5b.png)
 
 ---
 
 ## ✅ Summary
 - Docker provides **reproducibility** and **portability** for ML projects.  
 - You learned about images, containers, volumes, and Dockerfiles.  
-- Next, you will create Dockerfiles tailored for ML **training and serving**.  
+- Next, you will create Dockerfiles tailored for ML **training and serving**.
+
+![Docker ML Summary](images/1_intro_to_Docker_for_ML/6.png)

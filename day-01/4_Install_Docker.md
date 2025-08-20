@@ -7,17 +7,39 @@ This guide covers installing Docker on **Windows**, **macOS**, and **Ubuntu/Linu
 ## 1. Windows (Docker Desktop)
 
 1. Go to: [https://www.docker.com/products/docker-desktop/](https://www.docker.com/products/docker-desktop/)
+<p align="left">
+        <img src="images/4_Install_Docker/1.png" alt="Sign Up" width="400">
+      </p>
 2. Download **Docker Desktop for Windows** (choose Windows 10/11 based on your OS).
+<p align="left">
+        <img src="images/4_Install_Docker/2.png" alt="Sign Up" width="400">
+      </p>
 3. Run the installer:
    - Enable **“Use WSL 2 instead of Hyper-V”** (recommended).
    - Follow prompts to complete installation.
 4. Restart your computer.
+<p align="left">
+        <img src="images/4_Install_Docker/6.png" alt="Sign Up" width="400">
+      </p>
 5. Launch **Docker Desktop** and wait for it to start.
+<p align="left">
+        <img src="images/4_Install_Docker/8.png" alt="Sign Up" width="400">
+        <img src="images/4_Install_Docker/9.png" alt="Sign Up" width="400">
+      </p>
+
 6. Verify installation in Command Prompt or PowerShell:
+
    ```bash
    docker --version
-   docker run hello-world
    ```
+
+      <p align="left">
+           <img src="images/4_Install_Docker/7.png" alt="Sign Up" width="400">
+         </p>
+      docker run hello-world
+      <p align="left">
+           <img src="images/4_Install_Docker/10.png" alt="Sign Up" width="400">
+         </p>
 
 ---
 

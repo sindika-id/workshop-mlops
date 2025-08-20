@@ -10,19 +10,27 @@ This guide covers installing Visual Studio Code (VS Code) on **Windows**, **macO
    [https://code.visualstudio.com/](https://code.visualstudio.com/)
 
 <p align="left">
-        <img src="images/2_Git_Install/16.png" alt="Sign Up" width="400">
+        <img src="images/3_Install_VsCode/1.png" alt="Sign Up" width="400">
       </p>
 
 2. Click **Download for Windows**.
 
 <p align="left">
-        <img src="images/2_Git_Install/16.png" alt="Sign Up" width="400">
+        <img src="images/3_Install_VsCode/2.png" alt="Sign Up" width="400">
       </p>
 3. Run the installer and follow prompts:
    - Accept the license agreement.
-   - Select installation location.
+   <p align="left">
+        <img src="images/3_Install_VsCode/4.png" alt="Sign Up" width="400">
+      </p>
    - **Optional (recommended):** Check *Add to PATH* and *Register as default editor for supported file types*.
+   <p align="left">
+        <img src="images/3_Install_VsCode/5.png" alt="Sign Up" width="400">
+      </p>
 4. Finish installation and launch VS Code.
+<p align="left">
+        <img src="images/3_Install_VsCode/8.png" alt="Sign Up" width="400">
+      </p>
 
 ---
 
@@ -68,12 +76,24 @@ This guide covers installing Visual Studio Code (VS Code) on **Windows**, **macO
 
 1. Open VS Code.
 2. Go to the **Extensions** view:
-   - Click the Extensions icon on the Activity Bar (left side), or
+   - Click the Extensions icon on the Activity Bar (left side)
+   <p align="left">
+        <img src="images/3_Install_VsCode/9.png" alt="Sign Up" width="400">
+      </p>
    - Press `Ctrl + Shift + X` (**Cmd + Shift + X** on macOS).
 3. In the search box, type:  
    **Python** (by Microsoft).
+   <p align="left">
+        <img src="images/3_Install_VsCode/10.png" alt="Sign Up" width="400">
+      </p>
 4. Click **Install**.
+<p align="left">
+        <img src="images/3_Install_VsCode/11.png" alt="Sign Up" width="400">
+      </p>
 5. **Optional but recommended:** Install **Pylance** (Microsoft) for improved IntelliSense and type checking.
+<p align="left">
+        <img src="images/3_Install_VsCode/12.png" alt="Sign Up" width="400">
+      </p>
 6. Restart VS Code to ensure the extension loads properly.
 
 ---

@@ -23,6 +23,7 @@ Initialize DVC (if not already):
 ```bash
 dvc init
 ```
+![alt text](images/4_Integrating_DVC_with_MLFlow/1_init.png)
 
 Add a dataset under version control:
 ```bash
@@ -31,12 +32,14 @@ dvc add data/val
 git add data/*.dvc .gitignore
 git commit -m "Track dataset with DVC"
 ```
+![alt text](images/4_Integrating_DVC_with_MLFlow/1_version_control.png)
 
 Push data to remote storage:
 ```bash
-dvc remote add -d myremote s3://mybucket/dvcstore
+dvc remote add -d myremote s3://dvcstore
 dvc push
 ```
+![alt text](images/4_Integrating_DVC_with_MLFlow/1_dvc_push.png)
 
 ---
 
@@ -56,6 +59,9 @@ with mlflow.start_run():
     dvc_version = get_git_revision_hash()
     mlflow.log_param("dvc_dataset_version", dvc_version)
 ```
+![alt text](images/4_Integrating_DVC_with_MLFlow/2_link_dvc_mlflows.png)
+
+![alt text](images/4_Integrating_DVC_with_MLFlow/2_dvc_dataset_versions.png)
 
 This way, every MLflow run is tied to the **exact dataset version** tracked by DVC.
 
@@ -78,6 +84,8 @@ git add data/*.dvc train.py
 git commit -m "Train with new dataset version"
 git push
 ```
+We can see the dataset version in the MLFlow UI parameters.
+![alt text](images/4_Integrating_DVC_with_MLFlow/2_mlflow_param.png)
 
 MLflow will now display both **experiment metrics** and the **dataset commit version**.
 

@@ -113,14 +113,26 @@ with mlflow.start_run(run_name="resnet18-catdog"):
     print("Model logged to MLflow")
 ```
 
+![alt text](images/2_Tracking_Experiments_with_MLFlow/3_Train.png)
+
+![alt text](images/2_Tracking_Experiments_with_MLFlow/3_RunTrain.png)
+
 ---
 
 ## 🖥 Step 4: View Experiments
 - Navigate to **http://localhost:5000**.
 - You will see:
   - **Parameters**: learning rate, batch size, epochs.
+
+  ![alt text](images/2_Tracking_Experiments_with_MLFlow/4_Parameters.png)
+
   - **Metrics**: train loss per epoch, validation accuracy.
+
+  ![alt text](images/2_Tracking_Experiments_with_MLFlow/4_Metrics.png)
+
   - **Artifacts**: saved model file and logged MLflow model.
+  
+  ![alt text](images/2_Tracking_Experiments_with_MLFlow/4_Artifacts.png)
 
 ---
 

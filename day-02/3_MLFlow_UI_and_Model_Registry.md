@@ -43,6 +43,8 @@ print("Registered model:", result.name, "version:", result.version)
 
 Replace `<RUN_ID>` with the run ID from your MLflow experiment.
 
+![alt text](images/3_MLFlow_UI_and_Model_Registry/2_RegisterModel.png)
+
 ---
 
 ### Promote a model version
@@ -57,12 +59,14 @@ Models can move across **stages**:
 from mlflow.tracking import MlflowClient
 
 client = MlflowClient()
-client.transition_model_version_stage(
+client.set_registered_model_alias(
     name="CatDogClassifier",
-    version=1,
-    stage="Production"
+    alias="production",
+    version=1
 )
 ```
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/2_ModelStages.png)
 
 ---
 
@@ -84,12 +88,43 @@ This provides **centralized governance** for ML models.
 Load the latest **production** model in Python:
 
 ```python
-import mlflow.pyfunc
+from torchvision import transforms
+from PIL import Image
+import torch
+import mlflow.pytorch
 
-model = mlflow.pyfunc.load_model("models:/CatDogClassifier/Production")
-prediction = model.predict(<your_input_data>)
-print("Prediction:", prediction)
+model = mlflow.pytorch.load_model("models:/CatDogClassifier@production")
+device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+model.to(device)
+
+def predict(image_path):
+    image = Image.open(image_path).convert("RGB")
+
+    transform = transforms.Compose([
+        transforms.Resize((224, 224)),
+        transforms.ToTensor(),
+        transforms.Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])
+    ])
+
+    image_tensor = transform(image).unsqueeze(0).to(device)
+
+    model.eval()
+
+    with torch.no_grad():
+        output = model(image_tensor)
+
+    probabilities = torch.nn.functional.softmax(output[0], dim=0)
+
+    class_names = ["cat", "dog"]
+    predicted_class = probabilities.argmax().item()
+    confidence = probabilities[predicted_class].item()
+
+    print(f"Predicted class: {class_names[predicted_class]}, Confidence: {confidence:.4f}")
 ```
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/4_InferencesModel.png)
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/4_RunInferenceModel.png)
 
 ---
 

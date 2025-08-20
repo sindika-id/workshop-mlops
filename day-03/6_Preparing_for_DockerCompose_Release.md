@@ -1,4 +1,4 @@
-# 7. Preparing for Docker Compose Release
+# 6. Preparing for Docker Compose Release
 
 ## 🎯 Learning Objectives
 - Learn how to orchestrate ML services using Docker Compose.  

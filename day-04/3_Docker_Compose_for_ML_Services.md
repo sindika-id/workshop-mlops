@@ -24,6 +24,8 @@ MLFLOW_PORT=5000
 API_PORT=8000
 ```
 
+![alt text](images/3_Docker_Compose_for_ML_Services/1_env.png)
+
 ---
 
 ## 🛠 Step 2: `docker-compose.yml`
@@ -37,7 +39,11 @@ services:
     container_name: mlflow
     ports:
       - "${MLFLOW_PORT}:5000"
-    command: mlflow server --backend-store-uri sqlite:///mlflow.db                            --default-artifact-root /mlruns                            --host 0.0.0.0
+    command: 
+      mlflow server
+      --backend-store-uri sqlite:///mlflow.db
+      --default-artifact-root /mlruns
+      --host 0.0.0.0
     volumes:
       - ./mlruns:/mlruns
       - ./mlflow.db:/mlflow.db
@@ -68,6 +74,8 @@ services:
       - mlflow
 ```
 
+![alt text](images/3_Docker_Compose_for_ML_Services/2_docker_compose.png)
+
 ---
 
 ## 🛠 Step 3: Run Services
@@ -76,23 +84,35 @@ Start services:
 ```bash
 docker compose up -d --build
 ```
+![alt text](images/3_Docker_Compose_for_ML_Services/3_build.png)
+
+![alt text](images/3_Docker_Compose_for_ML_Services/3_build_2.png)
 
 Check logs:
 ```bash
 docker compose logs -f
 ```
 
+![alt text](images/3_Docker_Compose_for_ML_Services/3_cek_logs.png)
+
 Stop services:
 ```bash
 docker compose down
 ```
 
+![alt text](images/3_Docker_Compose_for_ML_Services/3_down.png)
+
 ---
 
 ## 🛠 Step 4: Access Services
 
-- MLflow UI → http://localhost:${MLFLOW_PORT}  
+- MLflow UI → http://localhost:${MLFLOW_PORT}
+
+![alt text](images/3_Docker_Compose_for_ML_Services/4_mlflow.png)
+
 - FastAPI docs → http://localhost:${API_PORT}/docs  
+
+![alt text](images/3_Docker_Compose_for_ML_Services/4_swagger.png)
 
 ---
 
@@ -108,10 +128,14 @@ services:
       - LOG_LEVEL=info
 ```
 
+![alt text](images/3_Docker_Compose_for_ML_Services/5_docker_compose_override.png)
+
 Run with override:
 ```bash
 docker compose -f docker-compose.yml -f docker-compose.override.yml up -d
 ```
+
+![alt text](images/3_Docker_Compose_for_ML_Services/5_run_override.png)
 
 ---
 

@@ -26,6 +26,7 @@
 ├── requirements.txt
 ├── Dockerfile.serve
 ```
+![alt text](images/2_Dockerizing_Model_service/1_projecy_structure.png)
 
 `requirements.txt`:
 ```
@@ -36,6 +37,7 @@ torch
 torchvision
 Pillow
 ```
+![alt text](images/2_Dockerizing_Model_service/1_requirements.png)
 
 ---
 
@@ -44,7 +46,7 @@ Pillow
 `Dockerfile.serve`:
 
 ```dockerfile
-FROM python:3.10-slim
+FROM python:3.12-bookworm
 
 # Install dependencies
 WORKDIR /app
@@ -69,11 +71,13 @@ CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
 ```bash
 docker build -f Dockerfile.serve -t catdog-api:latest .
 ```
+![alt text](images/2_Dockerizing_Model_service/3_buidl_image.png)
 
 Check images:
 ```bash
 docker images
 ```
+![alt text](images/2_Dockerizing_Model_service/3_chekc_image.png)
 
 ---
 
@@ -82,8 +86,10 @@ docker images
 ```bash
 docker run --rm -it -p 8000:8000 catdog-api:latest
 ```
-
+![alt text](images/2_Dockerizing_Model_service/4_run_container.png)
 Now test the API at 👉 http://localhost:8000/docs  
+
+![alt text](images/2_Dockerizing_Model_service/4_localhost.png)
 
 ---
 
@@ -94,6 +100,7 @@ If you want to update models without rebuilding the image, mount a volume:
 ```bash
 docker run --rm -it -p 8000:8000   -v $(pwd)/models:/app/models   catdog-api:latest
 ```
+![alt text](images/2_Dockerizing_Model_service/5_mount_volume.png)
 
 ---
 
@@ -103,6 +110,7 @@ docker run --rm -it -p 8000:8000   -v $(pwd)/models:/app/models   catdog-api:lat
 docker tag catdog-api:latest ghcr.io/<username>/catdog-api:latest
 docker push ghcr.io/<username>/catdog-api:latest
 ```
+![alt text](images/2_Dockerizing_Model_service/6_push_to_registry.png)
 
 ---
 

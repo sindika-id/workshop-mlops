@@ -39,6 +39,8 @@ def health_check():
     return {"status": "ok"}
 ```
 
+![alt text](images/4_Monitoring_and_Logging/1_add_logging.png)
+
 Logs will include timestamps, log levels, and messages.  
 
 ---
@@ -56,6 +58,8 @@ async def log_requests(request: Request, call_next):
     return response
 ```
 
+![alt text](images/4_Monitoring_and_Logging/2_request_logging_middleware.png)
+
 ---
 
 ## 🛠 Step 3: Expose Metrics with Prometheus
@@ -64,16 +68,17 @@ Install:
 ```bash
 pip install prometheus-fastapi-instrumentator
 ```
+![alt text](images/4_Monitoring_and_Logging/3_install_prometheus.png)
 
 Add to FastAPI app:
 
 ```python
 from prometheus_fastapi_instrumentator import Instrumentator
 
-@app.on_event("startup")
-async def startup():
-    Instrumentator().instrument(app).expose(app)
+Instrumentator().instrument(app).expose(app)
 ```
+
+![alt text](images/4_Monitoring_and_Logging/3_prometheus_main.png)
 
 Now metrics available at 👉 `/metrics` (Prometheus format).  
 
@@ -99,6 +104,8 @@ Add services to `docker-compose.yml`:
       - "3000:3000"
 ```
 
+![alt text](images/4_Monitoring_and_Logging/4_add_service_to_docker_compose.png)
+
 `prometheus.yml` config:
 ```yaml
 scrape_configs:
@@ -107,13 +114,49 @@ scrape_configs:
       - targets: ["api:8000"]
 ```
 
+![alt text](images/4_Monitoring_and_Logging/4_prometheus_yml_config.png)
+
 ---
 
 ## 🛠 Step 5: Visualize in Grafana
 
-- Open 👉 http://localhost:3000  
-- Add Prometheus as data source (`http://prometheus:9090`).  
-- Import dashboard for FastAPI metrics.  
+- Open 👉 http://localhost:3000
+
+  Login with username and password admin:
+
+![alt text](images/4_Monitoring_and_Logging/5_login_grafana.png)
+
+- Add Prometheus as data source (`http://prometheus:9090`).
+
+![alt text](images/4_Monitoring_and_Logging/5_find_data_sources.png)
+
+  Add data source, then add Prometheus:
+
+![alt text](images/4_Monitoring_and_Logging/5_add_data_source.png)
+
+  Add (`http://prometheus:9090`) as connection, then scroll to bottom and save it:
+
+![alt text](images/4_Monitoring_and_Logging/5_prometheus_connection.png)
+
+- Import dashboard for FastAPI metrics.
+
+  Select dashboard in sidebar:
+
+![alt text](images/4_Monitoring_and_Logging/5_select_dashboard.png)
+
+  Click import dashboard:
+  
+![alt text](images/4_Monitoring_and_Logging/5_import_dashboard.png)
+
+  Load dashboard id 22676:
+
+![alt text](images/4_Monitoring_and_Logging/5_load_dashboard_22676.png)
+
+  Import the dashboard:
+
+![alt text](images/4_Monitoring_and_Logging/5_import_the_dashboard.png)
+
+![alt text](images/4_Monitoring_and_Logging/5_grafana_dashboard.png)
 
 ---
 

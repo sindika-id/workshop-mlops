@@ -84,7 +84,67 @@ Now metrics available at 👉 `/metrics` (Prometheus format).
 
 ---
 
-## 🛠 Step 4: Docker Compose with Prometheus + Grafana
+## 🛠 Step 4: Data Drift Monitoring with Evidently
+
+Install:
+```bash
+pip install evidently
+```
+
+![alt text](images/4_Monitoring_and_Logging/4_install_evidently.png)
+
+Add data drift monitoring to `app/main.py`:
+
+```python
+from evidently import Report
+from evidently.presets import DataDriftPreset
+from fastapi.responses import HTMLResponse
+
+val_dataset = datasets.ImageFolder("./data/val", transform=transform)
+ref_loader = torch.utils.data.DataLoader(val_dataset, batch_size=32)
+
+ref_preds = []
+with torch.no_grad():
+    for imgs, _ in ref_loader:
+        outputs = model(imgs)
+        preds = torch.argmax(outputs, 1).numpy()
+        ref_preds.extend(preds)
+
+ref_data = pd.DataFrame({"prediction": ref_preds})
+
+monitor_data = []
+
+@app.get("/monitor", response_class=HTMLResponse)
+async def monitor():
+    if not monitor_data:
+        return HTMLResponse("<h3>No data yet for monitoring</h3>")
+
+    df = pd.DataFrame(monitor_data)
+
+    report = Report([DataDriftPreset()])
+    my_eval = report.run(reference_data=ref_data, current_data=df)
+
+    html_path = "monitoring_report.html"
+    html_content = my_eval.save_html(html_path)
+
+    with open(html_path, "r", encoding="utf-8") as f:
+        html_content = f.read()
+
+    return HTMLResponse(content=html_content)
+```
+
+![alt text](images/4_Monitoring_and_Logging/4_load_ref_data.png)
+
+![alt text](images/4_Monitoring_and_Logging/4_add_monitor.png)
+
+Now data drift monitoring available at 👉 `/monitor`.
+
+![alt text](images/4_Monitoring_and_Logging/4_monitor_dashboard.png)
+![alt text](images/4_Monitoring_and_Logging/4_monitor_dashboard_2.png)
+
+---
+
+## 🛠 Step 5: Docker Compose with Prometheus + Grafana
 
 Add services to `docker-compose.yml`:
 
@@ -104,7 +164,7 @@ Add services to `docker-compose.yml`:
       - "3000:3000"
 ```
 
-![alt text](images/4_Monitoring_and_Logging/4_add_service_to_docker_compose.png)
+![alt text](images/4_Monitoring_and_Logging/5_add_service_to_docker_compose.png)
 
 `prometheus.yml` config:
 ```yaml
@@ -114,49 +174,49 @@ scrape_configs:
       - targets: ["api:8000"]
 ```
 
-![alt text](images/4_Monitoring_and_Logging/4_prometheus_yml_config.png)
+![alt text](images/4_Monitoring_and_Logging/5_prometheus_yml_config.png)
 
 ---
 
-## 🛠 Step 5: Visualize in Grafana
+## 🛠 Step 6: Visualize in Grafana
 
 - Open 👉 http://localhost:3000
 
   Login with username and password admin:
 
-![alt text](images/4_Monitoring_and_Logging/5_login_grafana.png)
+![alt text](images/4_Monitoring_and_Logging/6_login_grafana.png)
 
 - Add Prometheus as data source (`http://prometheus:9090`).
 
-![alt text](images/4_Monitoring_and_Logging/5_find_data_sources.png)
+![alt text](images/4_Monitoring_and_Logging/6_find_data_sources.png)
 
   Add data source, then add Prometheus:
 
-![alt text](images/4_Monitoring_and_Logging/5_add_data_source.png)
+![alt text](images/4_Monitoring_and_Logging/6_add_data_source.png)
 
   Add (`http://prometheus:9090`) as connection, then scroll to bottom and save it:
 
-![alt text](images/4_Monitoring_and_Logging/5_prometheus_connection.png)
+![alt text](images/4_Monitoring_and_Logging/6_prometheus_connection.png)
 
 - Import dashboard for FastAPI metrics.
 
   Select dashboard in sidebar:
 
-![alt text](images/4_Monitoring_and_Logging/5_select_dashboard.png)
+![alt text](images/4_Monitoring_and_Logging/6_select_dashboard.png)
 
   Click import dashboard:
   
-![alt text](images/4_Monitoring_and_Logging/5_import_dashboard.png)
+![alt text](images/4_Monitoring_and_Logging/6_import_dashboard.png)
 
   Load dashboard id 22676:
 
-![alt text](images/4_Monitoring_and_Logging/5_load_dashboard_22676.png)
+![alt text](images/4_Monitoring_and_Logging/6_load_dashboard_22676.png)
 
   Import the dashboard:
 
-![alt text](images/4_Monitoring_and_Logging/5_import_the_dashboard.png)
+![alt text](images/4_Monitoring_and_Logging/6_import_the_dashboard.png)
 
-![alt text](images/4_Monitoring_and_Logging/5_grafana_dashboard.png)
+![alt text](images/4_Monitoring_and_Logging/6_grafana_dashboard.png)
 
 ---
 

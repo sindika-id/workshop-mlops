@@ -2,7 +2,7 @@
 
 This guide combines **Kaggle account registration**, **Kaggle API setup**, and **Python `kagglehub` usage** so you can quickly access datasets for your ML projects and workshops.
 
----
+--- 
 
 ## 1. Go to the Kaggle Website
 - Open your browser and navigate to:  
@@ -66,13 +66,13 @@ If you want to download datasets programmatically:
 ```bash
 pip install kaggle
 ```
-![alt text](images/7_KaggleDataset/8.2_InstallKaggleCli.png)
+![Install Kaggle CLI](images/7_KaggleDataset/8.2_InstallKaggleCli.png)
 
 Verify installation:
 ```bash
 kaggle --version
 ```
-![alt text](images/7_KaggleDataset/8.2_KaggleVersion.png)
+![Kaggle CLI Version](images/7_KaggleDataset/8.2_KaggleVersion.png)
 
 ### 8.3. Place `kaggle.json` in the Correct Location
 
@@ -81,7 +81,7 @@ kaggle --version
 mkdir -Force $env:USERPROFILE\.kaggle
 Move-Item -Force .\kaggle.json $env:USERPROFILE\.kaggle
 ```
-![alt text](images/7_KaggleDataset/8.3_KaggleJson.png)
+![kaggle.json location on Windows](images/7_KaggleDataset/8.3_KaggleJson.png)
 
 **macOS / Linux (Terminal):**
 ```bash
@@ -100,20 +100,20 @@ chmod 600 ~/.kaggle/kaggle.json
 ```bash
 kaggle datasets list -s titanic
 ```
-![alt text](images/7_KaggleDataset/9.1_SearchDataset.png)
+![Search dataset results](images/7_KaggleDataset/9.1_SearchDataset.png)
 
 ### 9.2. Download a competition dataset (example: Titanic)
 ```bash
 kaggle competitions download -c titanic
 unzip titanic.zip -d titanic_dataset
 ```
-![alt text](images/7_KaggleDataset/9.2_DownloadCompetitionDataset.png)
+![Download competition dataset (Titanic)](images/7_KaggleDataset/9.2_DownloadCompetitionDataset.png)
 
 ### 9.3. Download a public dataset (example)
 ```bash
 kaggle datasets download -d bhavikjikadara/dog-and-cat-classification-dataset -p datasets/dog-cat --unzip
 ```
-![alt text](images/7_KaggleDataset/9.3_PublicDataset.png)
+![Download public dataset example](images/7_KaggleDataset/9.3_PublicDataset.png)
 
 ---
 
@@ -136,7 +136,7 @@ kaggle.json
 ```bash
 pip install kagglehub
 ```
-![alt text](images/7_KaggleDataset/11.1_InstallKagglehub.png)
+![Install kagglehub](images/7_KaggleDataset/11.1_InstallKagglehub.png)
 
 ### 11.2. Ensure API Token is Set
 - Follow step **7** above to create and download `kaggle.json`.
@@ -153,7 +153,7 @@ path = kagglehub.dataset_download("bhavikjikadara/dog-and-cat-classification-dat
 
 print("Path to dataset files:", path)
 ```
-![alt text](images/7_KaggleDataset/11.3_DatasetKagglehub.png)
+![kagglehub dataset download result](images/7_KaggleDataset/11.3_DatasetKagglehub.png)
 
 ### 11.4. How It Works
 - `kagglehub.dataset_download()` will:

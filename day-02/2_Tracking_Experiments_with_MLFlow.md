@@ -14,7 +14,12 @@ Start the UI server:
 ```bash
 mlflow ui
 ```
+
+![alt text](images/1_Installing_MLFlow/4_run_quick_test.png)
+
 Open: **http://localhost:5000**
+
+![alt text](images/1_Installing_MLFlow/4_dashboard_quick_test.png)
 
 ---
 

@@ -15,10 +15,22 @@ Once you start MLflow (`mlflow ui` or via Docker/Docker Compose), open:
 
 The UI provides:
 
-- **Experiments**: A collection of runs (each run represents a training execution).  
-- **Runs**: Detailed metrics, parameters, and artifacts for each training session.  
-- **Comparison**: Select multiple runs to compare metrics visually.  
-- **Artifacts**: Files produced by your runs (e.g., models, plots, logs).  
+- **Experiments**: A collection of runs (each run represents a training execution).
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/1_experiments.png)
+
+- **Runs**: Detailed metrics, parameters, and artifacts for each training session.
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/1_runs.png)
+
+- **Comparison**: Select multiple runs to compare metrics visually.
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/1_compare.png)
+![alt text](images/3_MLFlow_UI_and_Model_Registry/1_compare2.png)
+
+- **Artifacts**: Files produced by your runs (e.g., models, plots, logs). 
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/1_artifacts.png)
 
 📌 Example: You can compare two runs with different learning rates and visualize how accuracy changes.
 

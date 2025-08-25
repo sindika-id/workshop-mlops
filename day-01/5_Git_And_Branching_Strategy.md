@@ -42,11 +42,10 @@ We'll use a repository name `mlops-workshop-pens` for this workshop.
 
 ```bash
 mkdir mlops-workshop-pens
-
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/2.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/2.png" alt="Sign Up" width="600">
       </p>
 
 ```bash
@@ -54,7 +53,7 @@ cd mlops-workshop-pens
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/3.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/3.png" alt="Sign Up" width="600">
       </p>
 
 ```bash
@@ -62,52 +61,52 @@ git init
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/4.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/4.png" alt="Sign Up" width="600">
       </p>
 
-2.  **Create an initial file using VS Code**
+2. **Create an initial file using VS Code**
 
-    - Open VS Code in the project folder:
+- Open VS Code in the project folder:
 
-      ```bash
-      code .
-      ```
+  ```bash
+  code .
+  ```
 
-      _(If `code` command is not recognized, open VS Code manually and choose "File → Open Folder…")_
+  _(If `code` command is not recognized, open VS Code manually and choose "File → Open Folder…")_
 
-    - In VS Code:
+  - In VS Code:
 
-          1. Click **New File** in the Explorer panel.
+    1. Click **New File** in the Explorer panel.
 
-           <p align="left">
-
-         <img src="images/5_Git_And_Branching_Strategy/5.png" alt="Sign Up" width="400">
+       <p align="left">
+         <img src="images/5_Git_And_Branching_Strategy/5.png" alt="Sign Up" width="800">
        </p>
-       
-          2. Name the file:
 
-             ```
-             README.md
-             ```
+    2. Name the file:
 
-      <p align="left">
-               <img src="images/5_Git_And_Branching_Strategy/6.png" alt="Sign Up" width="400">
-             </p>
-              <p align="left">
-               <img src="images/5_Git_And_Branching_Strategy/7.png" alt="Sign Up" width="400">
-             </p>
+       ```
+       README.md
+       ```
 
-          3. Add the following content:
-             ```md
-             # MLOps Workshop PENS
-             ```
-          4. Save the file (**Ctrl+S** / **Cmd+S**).
+       <p align="left">
+         <img src="images/5_Git_And_Branching_Strategy/6.png" alt="Sign Up" width="600">
+       </p>
 
-            <p align="left">
-            <img src="images/5_Git_And_Branching_Strategy/8.png" alt="Sign Up" width="400">
-            </p>
+       <p align="left">
+         <img src="images/5_Git_And_Branching_Strategy/7.png" alt="Sign Up" width="700">
+       </p>
 
-3.  **Stage and commit the file**
+    3. Add the following content:
+       ```md
+       # MLOps Workshop PENS
+       ```
+    4. Save the file (**Ctrl+S** / **Cmd+S**).
+
+       <p align="left">
+         <img src="images/5_Git_And_Branching_Strategy/8.png" alt="Sign Up" width="600">
+       </p>
+
+3. **Stage and commit the file**
 
 ```bash
 git add .
@@ -115,7 +114,7 @@ git commit -m "Initial commit for MLOps Workshop PENS"
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/9.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/9.png" alt="Sign Up" width="600">
       </p>
 
 4. **Create a new repository on GitHub**
@@ -123,7 +122,7 @@ git commit -m "Initial commit for MLOps Workshop PENS"
 - Go to [https://github.com/new](https://github.com/new)
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/10.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/10.png" alt="Sign Up" width="600">
       </p>
       
 - Repository name: `mlops-workshop-pens`
@@ -132,7 +131,7 @@ git commit -m "Initial commit for MLOps Workshop PENS"
 - Click **Create repository**.
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/11.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/11.png" alt="Sign Up" width="600">
       </p>
 
 5. **Link local repo to GitHub remote**  
@@ -143,7 +142,7 @@ git remote add origin https://github.com/cucupinid-ship-it/mlops-workshop-pens.g
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/12.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/12.png" alt="Sign Up" width="600">
       </p>
 
 6. **Push local repo to GitHub**
@@ -154,7 +153,7 @@ git push -u origin main
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/14.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/14.png" alt="Sign Up" width="600">
       </p>
 
 ### Step 3 — Create a `.gitignore` File
@@ -192,7 +191,7 @@ __pycache__/
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/15.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/15.png" alt="Sign Up" width="600">
       </p>
 
 #### 2. Stage the file
@@ -202,7 +201,7 @@ git add .gitignore
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/16.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/16.png" alt="Sign Up" width="600">
       </p>
 
 ---
@@ -214,7 +213,7 @@ git commit -m "Add .gitignore for ML project"
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/17.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/17.png" alt="Sign Up" width="600">
       </p>
 ---
 
@@ -227,7 +226,7 @@ git push origin main
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/18.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/18.png" alt="Sign Up" width="600">
       </p>
 ---
 
@@ -247,7 +246,7 @@ git checkout -b main
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/19.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/19.png" alt="Sign Up" width="600">
       </p>
 
 ```bash
@@ -256,7 +255,7 @@ git checkout -b develop
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/20.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/20.png" alt="Sign Up" width="600">
       </p>
 
 ```bash
@@ -265,7 +264,7 @@ git checkout -b feature/data-cleaning
 ```
 
 <p align="left">
-        <img src="images/5_Git_And_Branching_Strategy/21.png" alt="Sign Up" width="400">
+        <img src="images/5_Git_And_Branching_Strategy/21.png" alt="Sign Up" width="600">
       </p>
 
 ### Branching Diagram
@@ -277,5 +276,3 @@ git checkout -b feature/data-cleaning
                   \   \
  feature           o   o
 ```
-
----

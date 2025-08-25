@@ -24,8 +24,11 @@ This guide covers installing Docker on **Windows**, **macOS**, and **Ubuntu/Linu
 5. Launch **Docker Desktop** and wait for it to start.
 <p align="left">
         <img src="images/4_Install_Docker/8.png" alt="Sign Up" width="400">
+      </p>
+<p align="left">
         <img src="images/4_Install_Docker/9.png" alt="Sign Up" width="400">
       </p>
+
 
 6. Verify installation in Command Prompt or PowerShell:
 

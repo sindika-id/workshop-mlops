@@ -15,13 +15,13 @@ This guide covers installation on **Windows**, **macOS**, and **Ubuntu Linux**.
    [https://www.python.org/downloads/](https://www.python.org/downloads/)
 
    <p align="left">
-        <img src="images/6_Install_Python/1.png" alt="Sign Up" width="400">
+        <img src="images/6_Install_Python/1.png" alt="Sign Up" width="600">
       </p>
 
 2. Click **Download Python 3.x.x** (choose the latest stable version).
 
    <p align="left">
-        <img src="images/6_Install_Python/2.png" alt="Sign Up" width="400">
+        <img src="images/6_Install_Python/2.png" alt="Sign Up" width="600">
       </p>
 
 ### Step 2 — Run the Installer
@@ -54,7 +54,7 @@ python --version
 ```
 
 <p align="left">
-        <img src="images/6_Install_Python/7.png" alt="Sign Up" width="400">
+        <img src="images/6_Install_Python/7.png" alt="Sign Up" width="600">
       </p>
 
 or
@@ -122,7 +122,7 @@ python -m pip install --upgrade pip
 ```
 
 <p align="left">
-        <img src="images/6_Install_Python/8.png" alt="Sign Up" width="400">
+        <img src="images/6_Install_Python/8.png" alt="Sign Up" width="600">
       </p>
 
 ---

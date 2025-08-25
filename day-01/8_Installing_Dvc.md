@@ -1,4 +1,4 @@
-# DVC + Google Drive Integration Guide
+# DVC Installation Guide with Google Drive
 
 This document provides a **complete, production‑ready setup** for using **Data Version Control (DVC)** with **Google Drive** as a remote, including options for individual use, team collaboration, and CI automation via a **Service Account**.
 

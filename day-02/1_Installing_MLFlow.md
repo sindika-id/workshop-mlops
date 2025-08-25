@@ -31,12 +31,14 @@ python -m venv .venv
 pip install mlflow
 ```
 
-![alt text](../day-01/images/mlflow/1_InstallMlflow.png)
+![alt text](images/1_Installing_MLFlow/1_Install_MLFlow.png)
 
 Verify installation:
 ```bash
 mlflow --version
 ```
+
+![alt text](images/1_Installing_MLFlow/1_Verify_MLFlow.png)
 
 ---
 
@@ -45,8 +47,13 @@ If you prefer isolation:
 ```bash
 docker run -it -p 5000:5000 --rm --name mlflow ghcr.io/mlflow/mlflow:latest mlflow ui --host 0.0.0.0
 ```
+
+![alt text](images/1_Installing_MLFlow/2_MLFlow_docker.png)
+
 Now MLflow UI is available at:  
 👉 [http://localhost:5000](http://localhost:5000)
+
+![alt text](images/1_Installing_MLFlow/2_docker_localhost.png)
 
 ---
 
@@ -55,7 +62,7 @@ Now MLflow UI is available at:
 
 `docker-compose.yml` snippet:
 ```yaml
-version: "3.8"
+version: "3.9"
 services:
   mlflow:
     image: ghcr.io/mlflow/mlflow:latest
@@ -70,10 +77,14 @@ services:
       - ./mlflow.db:/mlflow.db
 ```
 
+![alt text](images/1_Installing_MLFlow/3_mlflow_docker_compose.png)
+
 Run:
 ```bash
 docker compose up -d
 ```
+
+![alt text](images/1_Installing_MLFlow/3_run_docker_compose.png)
 
 ---
 
@@ -90,7 +101,19 @@ with mlflow.start_run():
 print("Experiment logged! Open MLflow UI to view.")
 ```
 
+![alt text](images/1_Installing_MLFlow/4_quick_test.png)
+
+Run:
+```bash
+python main.py
+mlflow ui
+```
+
+![alt text](images/1_Installing_MLFlow/4_run_quick_test.png)
+
 Then go to the **MLflow UI** → **Experiments** tab → you should see the run.
+
+![alt text](images/1_Installing_MLFlow/4_dashboard_quick_test.png)
 
 ---
 

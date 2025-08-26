@@ -95,10 +95,21 @@ Test in Swagger UI with input dog image.
 
 ## 🛠 Step 5: Improving the API
 
-- Add **labels** mapping (`0 → cat`, `1 → dog`).  
-- Add **confidence scores** with `softmax`.  
-- Handle **batch predictions** (multiple images).  
-- Add **health check endpoint** (`/health`).  
+- Add **labels** mapping (`0 → cat`, `1 → dog`).
+
+![alt text](images/1_Model_Deployment_with_FastAPI/5_label_mapping.png)
+
+- Add **confidence scores** with `softmax`.
+
+![alt text](images/1_Model_Deployment_with_FastAPI/5_confidence_score_softmax.png)
+
+- Handle **batch predictions** (multiple images).
+
+![alt text](images/1_Model_Deployment_with_FastAPI/5_handle_batch_pred.png)
+
+- Add **health check endpoint** (`/health`).
+
+![alt text](images/1_Model_Deployment_with_FastAPI/5_health_index.png)
 
 ---
 

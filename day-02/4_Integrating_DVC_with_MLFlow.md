@@ -83,20 +83,38 @@ dvc push
 git add data/*.dvc train.py
 git commit -m "Train with new dataset version"
 git push
+
+# 5. Launch MLflow UI to view runs
+mlflow ui
 ```
-We can see the dataset version in the MLFlow UI parameters.
+
+![alt text](images/4_Integrating_DVC_with_MLFlow/3_dvc_pull_python_train.png)
+![alt text](images/4_Integrating_DVC_with_MLFlow/3_dvc_push.png)
+![alt text](images/4_Integrating_DVC_with_MLFlow/3_git_push.png)
+![alt text](images/4_Integrating_DVC_with_MLFlow/3_mlflow_ui.png)
+
+In MLflow UI (default: http://127.0.0.1:5000
+), you’ll see:
+
+- Experiment metrics and artifacts.
+
+![alt text](images/4_Integrating_DVC_with_MLFlow/3_experiments.png)
+![alt text](images/4_Integrating_DVC_with_MLFlow/3_model_metrics.png)
+![alt text](images/4_Integrating_DVC_with_MLFlow/3_model_artifacts.png)
+
+- Logged parameter dvc_dataset_version (the Git commit hash of .dvc file).
+
 ![alt text](images/4_Integrating_DVC_with_MLFlow/2_mlflow_param.png)
 
-MLflow will now display both **experiment metrics** and the **dataset commit version**.
+This ensures each run is tied to the exact dataset version.
 
----
-
-## 🧩 Step 4: Reproducing an Experiment
-
+## 🔁 Reproducing an Experiment
 To reproduce any run:
-1. Checkout the correct Git commit.  
-2. Run `dvc pull` to fetch the exact dataset version.  
-3. Re-run training → you will get the same metrics and artifacts.  
+1. Checkout the Git commit corresponding to that MLflow run.
+2. Run `dvc pull` → fetch the exact dataset snapshot.
+3. Re-run training → you’ll get the same metrics and artifacts.
+
+✅ This guarantees full reproducibility across data + code + results.
 
 ---
 

@@ -86,9 +86,18 @@ client.set_registered_model_alias(
 
 In the MLflow UI, go to the **Models** tab:
 
-- Browse registered models.  
-- View all versions of a given model.  
-- Assign stages (Staging, Production, Archived).  
+- Browse registered models.
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/3_browse_registered_models.png)
+
+- View all versions of a given model.
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/3_version_model.png)
+
+- Assign stages (Staging, Production, Archived).
+
+![alt text](images/3_MLFlow_UI_and_Model_Registry/3_version_model.png)
+
 - Track metadata (author, date, performance metrics).  
 
 This provides **centralized governance** for ML models.

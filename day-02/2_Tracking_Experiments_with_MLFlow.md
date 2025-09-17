@@ -38,7 +38,6 @@ Example code (based on your `cat vs dog` ResNet script):
 
 ```python
 # train.py
-# train.py
 from __future__ import annotations
 
 import argparse
@@ -169,8 +168,8 @@ def parse_args() -> argparse.Namespace:
     )
     # Data / training
     p.add_argument("--data-dir", type=Path, default=Path("data"), help="Root folder containing train/ and val/")
-    p.add_argument("--epochs", type=int, default=10)
-    p.add_argument("--batch-size", type=int, default=4)
+    p.add_argument("--epochs", type=int, default=1)
+    p.add_argument("--batch-size", type=int, default=30)
     p.add_argument("--lr", type=float, default=1e-3)
     p.add_argument("--num-workers", type=int, default=4)
     p.add_argument("--seed", type=int, default=42)
@@ -183,7 +182,7 @@ def parse_args() -> argparse.Namespace:
     p.add_argument("--mlflow-tracking-uri", type=str, default="http://165.232.169.40:5000")
     p.add_argument("--mlflow-experiment", type=str, default=os.getenv("MLFLOW_EXPERIMENT_NAME", "CatDog"))
     p.add_argument("--mlflow-run-name", type=str, default=None)
-    p.add_argument("--mlflow-register-as", type=str, default=None, help="Optional registered model name")
+    p.add_argument("--mlflow-register-as", type=str, default="catdog-v1.0", help="Optional registered model name")
     # S3/MinIO client defaults
     p.add_argument("--s3-endpoint", type=str,
                    default=os.getenv("MLFLOW_S3_ENDPOINT_URL", "http://165.232.169.40:9000"),
@@ -312,8 +311,8 @@ def main():
 
         # Log MLflow model
         mlflow.pytorch.log_model(
-            pytorch_model=model,
-            artifact_path="model",
+            model,
+            name="model",
             registered_model_name=args.mlflow_register_as if args.mlflow_register_as else None,
         )
 
@@ -323,6 +322,7 @@ def main():
 
 if __name__ == "__main__":
     main()
+
 
 ```
 

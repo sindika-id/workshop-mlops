@@ -80,7 +80,7 @@ python train.py
 dvc push
 
 # 4. Commit updates to Git
-git add data/*.dvc train.py
+git add *.dvc train.py
 git commit -m "Train with new dataset version"
 git push
 

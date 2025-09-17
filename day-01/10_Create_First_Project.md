@@ -313,3 +313,10 @@ git push -u origin main
 - Track datasets/models with DVC
 - Add CI (GitHub Actions) to run a quick lint/test
 - Containerize with Docker for reproducible runs
+
+### Troubleshoot SSL Error on mac
+
+```bash
+pip3 install --upgrade certifi
+export SSL_CERT_FILE=$(python -c "import certifi; print(certifi.where())")
+```

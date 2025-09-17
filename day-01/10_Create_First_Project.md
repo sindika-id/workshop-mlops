@@ -148,6 +148,7 @@ Create **`train.py`** in the project root with the following **minimal** content
 
 ```python
 import torch
+from pathlib import Path
 from torch import nn, optim
 from torchvision import datasets, transforms, models
 from torch.utils.data import DataLoader
@@ -206,9 +207,14 @@ for epoch in range(3):  # keep it small for the workshop
             total += labels.size(0)
     print(f"Validation accuracy: {correct/total:.2%}")
 
+
+ROOT = Path(__file__).resolve().parent
+MODEL_DIR = ROOT / "models"
+MODEL_DIR.mkdir(parents=True, exist_ok=True)
+
 # Save weights
-torch.save(model.state_dict(), "catdog_model.pth")
-print("Model saved to catdog_model.pth")
+torch.save(model.state_dict(), MODEL_DIR / "catdog_model.pth") 
+print(f"Model saved to {MODEL_DIR / 'catdog_model.pth'}")
 ```
 ![Training script](images/10_Create_First_Project/8_TrainScript.png)
 

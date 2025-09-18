@@ -1,171 +1,215 @@
-# 2. Dockerfile for Training and Serving
+# 2) Dockerfile for **Serving** — CatDog FastAPI
 
 ## 🎯 Learning Objectives
-- Learn how to write Dockerfiles for ML training and serving.  
-- Understand the difference between training and inference containers.  
-- Build lightweight, reproducible images for deployment.  
+- Write a **serving** Dockerfile for the CatDog FastAPI inference app.  
+- Understand how serving images differ from training images.  
+- Build lightweight, reproducible images for deployment (local/CI/CD).  
 
 ---
 
 ## 📘 Why Separate Training and Serving?
-
-- **Training containers**: heavy, contain PyTorch/TensorFlow, data science libraries, used offline for experiments.  
-- **Serving containers**: lightweight, optimized for inference (FastAPI, Flask, TorchServe).  
-
-This separation makes pipelines more efficient and production-ready.  
+- **Training containers** are heavy: include Jupyter, notebooks, CUDA toolkits, data science libs—optimized for experimentation.  
+- **Serving containers** are lean: only runtime + web framework (FastAPI/Uvicorn) and the model artifact.  
+- Separation improves build time, security surface, and cold‑start latency.  
 
 ---
 
-## 🛠 Step 1: Training Dockerfile
+## 🗂 Reference App (Serving Target)
+This guide assumes the single‑file FastAPI service from previous step.
 
-Example `Dockerfile.train`:
-
-```dockerfile
-FROM python:3.10-slim
-
-# Install system dependencies
-RUN apt-get update && apt-get install -y     git wget curl && rm -rf /var/lib/apt/lists/*
-
-# Set working directory
-WORKDIR /app
-
-# Copy requirements
-COPY requirements-train.txt .
-
-# Install dependencies (ML/DL frameworks)
-RUN pip install --no-cache-dir -r requirements-train.txt
-
-# Copy code
-COPY . .
-
-# Default command for training
-CMD ["python", "train.py"]
+**Project layout**
+```
+catdog-api/
+├─ app.py                 # FastAPI app (serving)
+├─ requirements.txt       # (dev) full deps if you prefer; we will use a lighter serving set
+├─ requirements-serve.txt # serving-only deps (shown below)
+└─ models/
+   └─ catdog_model.pth    # trained weights
 ```
 
-![Create Training Dockerfile](images/2_Dockerfile_for_Training_and_Serving/1a.png)
-
-Build the image:
-```bash
-docker build -f Dockerfile.train -t ml-train:latest .
-```
-
-![Build Training Image](images/2_Dockerfile_for_Training_and_Serving/1b.png)
-
-Run training:
-**Bash (Linux/macOS):**
-```bash
-docker run --rm -it -v $(pwd):/app ml-train:latest
-```
-
-**PowerShell (Windows):**
-```powershell
-docker run --rm -it -v "${PWD}:/app" ml-train:latest
-```
-
-![Run Training Container](images/2_Dockerfile_for_Training_and_Serving/1c.png)
+**app.py** exposes:  
+- `POST /predict` (multipart upload, field: `file`)  
+- `GET /health` (device + label list)  
+- Swagger UI at **`/docs`** (auto)  
 
 ---
 
-## 🛠 Step 2: Serving Dockerfile
+## 🧾 `requirements-serve.txt`
+Use a minimal set for inference:
+```txt
+fastapi>=0.110.0
+uvicorn[standard]>=0.29.0
+torch>=2.2.0
+torchvision>=0.17.0
+pillow>=10.0.0
+```
 
-Example `Dockerfile.serve`:
+> If you target CUDA in production, pin torch/torchvision to versions matching your CUDA base image. For CPU-only, the PyPI wheels are fine.
+
+---
+
+## 🛠 Serving Dockerfile (CPU)
+Create **`Dockerfile.serve`** at the repo root:
 
 ```dockerfile
-FROM python:3.10-slim
+# ---------- Base (CPU-only) ----------
+FROM python:3.11-slim
 
-# Install system dependencies
-RUN apt-get update && apt-get install -y     git wget curl && rm -rf /var/lib/apt/lists/*
+# Avoid interactive prompts & reduce image size
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1
 
+# System deps (keep minimal)
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    curl ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
+
+# App directory
 WORKDIR /app
 
-# Copy requirements for serving (lighter: no Jupyter, etc.)
-COPY requirements-serve.txt .
-RUN pip install --no-cache-dir -r requirements-serve.txt
+# Install serving dependencies first for better layer caching
+COPY requirements-serve.txt ./
+RUN pip install -r requirements-serve.txt
 
-# Copy only inference code + trained model
-COPY app/ ./app/
+# Copy only what's needed for inference
+COPY app.py ./
 COPY models/ ./models/
 
-# Expose port
+# Expose HTTP port
 EXPOSE 8000
 
-# Run FastAPI app
-CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "8000"]
+# Healthcheck (optional)
+HEALTHCHECK --interval=30s --timeout=3s --retries=3 \
+  CMD curl -fsS http://127.0.0.1:8000/health || exit 1
+
+# Start FastAPI with uvicorn
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
 
-![Create Serving Dockerfile](images/2_Dockerfile_for_Training_and_Serving/2a.png)
-
-Build the image:
+### Build
 ```bash
-docker build -f Dockerfile.serve -t ml-serve:latest .
+docker build -f Dockerfile.serve -t catdog-serve:latest .
 ```
 
-![Build Serving Image](images/2_Dockerfile_for_Training_and_Serving/2b.png)
-
-Run serving:
+### Run (mount model from host, optional)
 ```bash
-docker run --rm -it -p 8000:8000 ml-serve:latest
+# Linux/macOS (bash/zsh)
+docker run --rm -p 8000:8000 \
+  -v "$(pwd)/models:/app/models" \
+  catdog-serve:latest
+
+# Windows PowerShell
+docker run --rm -p 8000:8000 \
+  -v "${PWD}\models:/app/models" \
+  catdog-serve:latest
 ```
 
-![Run Serving Container](images/2_Dockerfile_for_Training_and_Serving/2c.png)
-
-Access the API at 👉 http://localhost:8000/docs  
-
-![FastAPI Docs](images/2_Dockerfile_for_Training_and_Serving/2d.png)
+> If `catdog_model.pth` is copied during build, the bind mount is optional. Use the mount when you want to update weights **without** rebuilding the image.
 
 ---
 
-## 🛠 Step 3: Multi-stage Build (Optional)
+## ⚙️ Environment Variables
+- `MODEL_PATH` (default: `models/catdog_model.pth`)  
+  Example:
+  ```bash
+  docker run --rm -p 8000:8000 \
+    -e MODEL_PATH=/app/models/catdog_model.pth \
+    catdog-serve:latest
+  ```
 
-Reduce image size by separating build & runtime layers:
+---
 
-Example `Dockerfile.multistage`:
+## 🔍 Verify & Use
+**Swagger UI**: http://localhost:8000/docs  
+**ReDoc**: http://localhost:8000/redoc  
+
+**Health**
+```bash
+curl http://localhost:8000/health
+```
+
+**Predict**
+```bash
+curl -X POST "http://localhost:8000/predict" \
+  -F "file=@/path/to/image.jpg"
+```
+
+---
+
+## 🚀 Optional: Multi‑Stage Serving Image
+Further reduce size by compiling wheels in a builder stage and copying only site-packages into the runtime.
+
 ```dockerfile
-FROM python:3.10-slim AS builder
+# ---------- Builder ----------
+FROM python:3.11-slim AS builder
+WORKDIR /wheels
+COPY requirements-serve.txt ./
+RUN pip wheel --wheel-dir=/wheels -r requirements-serve.txt
+
+# ---------- Runtime ----------
+FROM python:3.11-slim
+ENV PYTHONDONTWRITEBYTECODE=1 PYTHONUNBUFFERED=1 PIP_NO_CACHE_DIR=1
+WORKDIR /app
+COPY --from=builder /wheels /wheels
+RUN pip install --no-index --find-links=/wheels /wheels/*
+
+COPY app.py ./
+COPY models/ ./models/
+EXPOSE 8000
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
+```
+
+**Build & run**
+```bash
+docker build -f Dockerfile.serve -t catdog-serve:slim .
+docker run --rm -p 8000:8000 catdog-serve:slim
+```
+
+---
+
+## ⚡ GPU Serving (NVIDIA, optional)
+If you deploy on GPU, prefer an NVIDIA CUDA base (e.g., `nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04`) and install matching `torch` build.
+
+**Example (skeleton)**:
+```dockerfile
+FROM nvidia/cuda:12.1.1-cudnn8-runtime-ubuntu22.04
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    python3 python3-pip curl ca-certificates \
+ && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY requirements-train.txt .
-RUN pip install --no-cache-dir -r requirements-train.txt
+COPY requirements-serve.txt ./
+# Pin torch/vision to CUDA build here:
+# RUN pip install torch==<cuda-build> torchvision==<cuda-build> -f https://download.pytorch.org/whl/torch_stable.html
+RUN pip install -r requirements-serve.txt
 
-COPY . .
-RUN python -m compileall .
-
-# Runtime image
-FROM python:3.10-slim
-WORKDIR /app
-
-COPY --from=builder /usr/local /usr/local
-COPY . .
-
-CMD ["python", "train.py"]
+COPY app.py ./
+COPY models/ ./models/
+EXPOSE 8000
+CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 ```
-
-![Multi-stage Dockerfile](images/2_Dockerfile_for_Training_and_Serving/3a.png)
-
-Build the image:
+Run with GPU access:
 ```bash
-docker build -f Dockerfile.multistage -t ml-train-optimized:latest .
+docker run --rm --gpus all -p 8000:8000 catdog-serve:cuda
 ```
 
-![Build Multi-stage Image](images/2_Dockerfile_for_Training_and_Serving/3b.png)
+---
 
-Run the optimized training:
-**Bash (Linux/macOS):**
-```bash
-docker run --rm -it -v $(pwd):/app ml-train-optimized:latest
-```
-
-**PowerShell (Windows):**
-```powershell
-docker run --rm -it -v "${PWD}:/app" ml-train-optimized:latest
-```
-
-![Run Optimized Training Container](images/2_Dockerfile_for_Training_and_Serving/3c.png)
+## 🔒 Production Tips
+- Run with a **non‑root** user and read‑only rootfs where possible.  
+- Add resource limits (CPU/Memory) and liveness/readiness probes in K8s.  
+- Pin dependency versions for deterministic builds.  
+- Consider `gunicorn` workers if you need pre‑fork scaling, e.g.:  
+  ```bash
+  gunicorn -w 2 -k uvicorn.workers.UvicornWorker app:app -b 0.0.0.0:8000
+  ```
 
 ---
 
 ## ✅ Summary
-- Training and serving should use **different Dockerfiles**.  
-- Training: heavy, includes ML frameworks.  
-- Serving: lightweight, focused on inference.  
-- Multi-stage builds reduce size and improve portability.
+- Use a **lean serving Dockerfile** for the FastAPI app.  
+- Keep only inference dependencies and the model artifact.  
+- Optional multi‑stage builds and GPU variants are provided for size/perf needs.  
+- Access Swagger at **`/docs`** and test predictions with `curl`.

@@ -42,6 +42,7 @@ uvicorn[standard]>=0.29.0
 torch>=2.2.0
 torchvision>=0.17.0
 pillow>=10.0.0
+python-multipart
 ```
 
 > If you target CUDA in production, pin torch/torchvision to versions matching your CUDA base image. For CPU-only, the PyPI wheels are fine.
@@ -90,6 +91,10 @@ CMD ["uvicorn", "app:app", "--host", "0.0.0.0", "--port", "8000"]
 ### Build
 ```bash
 docker build -f Dockerfile.serve -t catdog-serve:latest .
+```
+### Run
+```bash
+docker run --rm -p 8000:8000 catdog-serve:latest
 ```
 
 ### Run (mount model from host, optional)

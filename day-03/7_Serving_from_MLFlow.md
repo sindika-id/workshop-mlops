@@ -45,6 +45,9 @@ mlflow>=2.10.0
 
 > If your MLflow server uses S3/MinIO, export the usual env vars (`MLFLOW_S3_ENDPOINT_URL`, `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, etc.).
 
+## Create Alias 
+Via UI:
+Model Registry → catdog-v1.0 → row “Version 3” → Aliases → Add → type ```cherry```
 ---
 
 ## 🧩 FastAPI App: **app_mlflow.py**
@@ -69,7 +72,7 @@ import mlflow.pytorch
 
 # ---- Config ----
 MLFLOW_TRACKING_URI = os.getenv("MLFLOW_TRACKING_URI", "http://localhost:5000")
-MLFLOW_MODEL_URI = os.getenv("MLFLOW_MODEL_URI")  # e.g., models:/catdog-v1.0/Production
+MLFLOW_MODEL_URI = os.getenv("MLFLOW_MODEL_URI", "models:/catdog-v1.0/cherry")  # e.g., models:/catdog-v1.0/3 or models:/catdog-v1.0/<alias>
 LABELS = os.getenv("LABELS", "cat,dog").split(",")
 DEVICE = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 

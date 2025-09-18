@@ -46,7 +46,7 @@ Example folder structure:
     └── ci-cd.yml
 ```
 
-![Create Workflow Directory](images/4_CI_CD_with_GitHub_Actions/1.png)
+![Create Workflow Directory](images/4_CI_CD_with_Github_Action/1.png)
 
 ---
 
@@ -88,7 +88,7 @@ jobs:
         pytest tests/
 ```
 
-![Create Basic Workflow](images/4_CI_CD_with_GitHub_Actions/2.png)
+![Create Basic Workflow](images/4_CI_CD_with_Github_Action/2.png)
 
 >This workflow installs dependencies and runs unit tests on every push/PR.  
 
@@ -129,7 +129,7 @@ Add a job to build Docker images and push to GitHub Container Registry (GHCR):
           ghcr.io/${{ steps.lowercase.outputs.owner }}/catdogcicd/ml-app:${{ github.sha }}
 ```
 
-![Add Docker Job](images/4_CI_CD_with_GitHub_Actions/3a.png)
+![Add Docker Job](images/4_CI_CD_with_Github_Action/3a.png)
 
 **Save and commit the workflow:**
 ```bash
@@ -143,7 +143,7 @@ git commit -m "Add CI/CD workflow with Docker build"
 git push origin main
 ```
 
-![Commit and Push Workflow](images/4_CI_CD_with_GitHub_Actions/3b.png)
+![Commit and Push Workflow](images/4_CI_CD_with_Github_Action/3b.png)
 
 **View workflow execution:**
 1. Go to your GitHub repository
@@ -151,7 +151,7 @@ git push origin main
 3. Click on the latest workflow run
 4. Watch the build and docker jobs execute
 
-![Docker Build Process](images/4_CI_CD_with_GitHub_Actions/3c.png)
+![Docker Build Process](images/4_CI_CD_with_Github_Action/3c.png)
 
 **Check the built image:**
 After successful execution, your image will be available at:
@@ -168,7 +168,7 @@ docker pull ghcr.io/your-username/your-repo-name/ml-app:latest
 docker run --rm -it ghcr.io/your-username/your-repo-name/ml-app:latest
 ```
 
-![Test Built Image](images/4_CI_CD_with_GitHub_Actions/3d.png)
+![Test Built Image](images/4_CI_CD_with_Github_Action/3d.png)
 
 ---
 

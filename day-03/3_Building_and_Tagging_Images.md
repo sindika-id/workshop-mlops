@@ -15,7 +15,7 @@ From the project root (with a Dockerfile present):
 docker build -f <Dockerfile Name> -t ml-app:latest .
 ```
 
-![Build Docker Image](images/3_Building_and_Tagging_Images/1a.png)
+![Build Docker Image](images/3_Building_and_Tagging_Image/1a.png)
 
 - `-t` → assigns a name (tag) to the image.  
 - `ml-app` → repository name (local image name).  
@@ -26,7 +26,7 @@ Check images:
 docker images
 ```
 
-![List Docker Images](images/3_Building_and_Tagging_Images/1b.png)
+![List Docker Images](images/3_Building_and_Tagging_Image/1b.png)
 
 ---
 
@@ -41,9 +41,9 @@ docker build -f <Dockerfile Name> -t ml-app:1.0.1 .
 docker build -f <Dockerfile Name> -t ml-app:$(git rev-parse --short HEAD) .
 ```
 
-![Semantic Versioning Tags](images/3_Building_and_Tagging_Images/2a.png)
+![Semantic Versioning Tags](images/3_Building_and_Tagging_Image/2a.png)
 
-![Docker image tagging](images/3_Building_and_Tagging_Images/2b.png)
+![Docker image tagging](images/3_Building_and_Tagging_Image/2b.png)
 
 📌 Recommendation:  
 - Use **semantic versioning** (1.0.0, 1.1.0, etc.) for releases.  
@@ -59,14 +59,14 @@ Run the image locally:
 docker run --rm -it ml-app:1.0.0
 ```
 
-![Run Tagged Image](images/3_Building_and_Tagging_Images/3a.png)
+![Run Tagged Image](images/3_Building_and_Tagging_Image/3a.png)
 
 Map ports for APIs:
 ```bash
 docker run --rm -it -p 8000:8000 ml-serve:1.0.0
 ```
 
-![Run with Port Mapping](images/3_Building_and_Tagging_Images/3b.png)
+![Run with Port Mapping](images/3_Building_and_Tagging_Image/3b.png)
 
 Mount volumes for data/models:
 **Bash (Linux/macOS):**
@@ -79,7 +79,7 @@ docker run --rm -it -v $(pwd):/app ml-train:1.0.0
 docker run --rm -it -v "${PWD}:/app" ml-train:1.0.0
 ```
 
-![Run with Volume Mount](images/3_Building_and_Tagging_Images/3c.png)
+![Run with Volume Mount](images/3_Building_and_Tagging_Image/3c.png)
 
 ---
 
@@ -99,21 +99,21 @@ docker login
 >Then restart Docker Desktop.
 >After restarting, try logging in again.
 
-![Docker Hub Login](images/3_Building_and_Tagging_Images/4a.png)
+![Docker Hub Login](images/3_Building_and_Tagging_Image/4a.png)
 
 2. Tag the image:
 ```bash
 docker tag ml-app:1.0.0 your-dockerhub-username/ml-app:1.0.0
 ```
 
-![Tag for Docker Hub](images/3_Building_and_Tagging_Images/4b.png)
+![Tag for Docker Hub](images/3_Building_and_Tagging_Image/4b.png)
 
 3. Push:
 ```bash
 docker push your-dockerhub-username/ml-app:1.0.0
 ```
 
-![Push to Docker Hub](images/3_Building_and_Tagging_Images/4c.png)
+![Push to Docker Hub](images/3_Building_and_Tagging_Image/4c.png)
 
 ### GitHub Container Registry (GHCR)
 ```bash
@@ -135,7 +135,7 @@ docker push ghcr.io/<username>/ml-app:1.0.0
 >    - Enter the generated token as password when prompted
 
 
-![Push to GHCR](images/3_Building_and_Tagging_Images/4d.png)
+![Push to GHCR](images/3_Building_and_Tagging_Image/4d.png)
 
 ---
 
@@ -165,4 +165,4 @@ Example GitHub Actions step:
 - Push images to a registry for sharing and deployment.  
 - Automate builds in CI/CD for consistency.
 
-![Summary Workflow](images/3_Building_and_Tagging_Images/6.png)
+![Summary Workflow](images/3_Building_and_Tagging_Image/6.png)
